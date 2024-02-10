@@ -1,0 +1,201 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Slick/slick-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Slick/slick.min.css" rel="stylesheet" />
+    <link href="~/Content/5.3.2-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link rel="icon" href="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png" type="image/x-icon">
+    
+</head>
+<body>
+    @{Html.RenderAction("Home_Carousel_Top", "Banners");
+    }
+    @{ var user = Session["Phone"] as TGDD_Ver5.Models.Customer;}
+    <div class="header__color">
+        <div class="container-fluid header">
+            <div class="header__top">
+                <ul>
+                    <li><a href="/" class="header__logo"><img src="https://i.imgur.com/ejQxnAJ.png"></a></li>
+                    <li><a href="x"><div class="address__header">Xem hàng tồn kho tại</div></a></li>
+                    <li>
+                        <div class="search-box">
+                            @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                            {
+                                <input type="text" placeholder="Tìm kiếm..." name="query">
+                                <button><img src="https://i.imgur.com/1F9vWIk.png"></button>
+                            }
+                        </div>
+                    </li>
+                    @if (user == null)
+                    {
+                        <li>
+                            <a href="@Url.Action("Index","Customer")"><div class="AccountLogin__header">Tài khoản & đơn hàng</div></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Order", "Customer")"><div class="AccountLogin__header">Tài khoản & đơn hàng @user.Phone</div></a>
+                        </li>
+                    }
+                    <li><a href="@Url.Action("Index","Cart")"><div class="Cart_header"><img src="https://i.imgur.com/Xs7JGqT.png"> Giỏ hàng </div>
+                        @Html.Action("Cart_Number","Cart")
+                            </a></li>
+                    <li>24h Công nghệ</li>
+                    <li>Hỏi đáp</li>
+                    <li>Game App</li>
+                </ul>
+
+            </div>
+            <div class="header__bot">
+                <ul>
+                    <li>
+                        <img src="https://i.imgur.com/goiQtd8.png" /><a href="@Url.Action("Index","Laptop")"> Laptop</a>
+                    </li>
+                    <li>
+                        <img src="https://cdn-icons-png.flaticon.com/128/3261/3261634.png" /><a href="@Url.Action("Cate","Laptop", new {cate ="gaming"})"> Laptop Gaming</a>
+                    </li>
+                    <li><img src="https://cdn-icons-png.flaticon.com/128/2813/2813448.png?track=ais"><a href="@Url.Action("Cate","Laptop", new {cate ="van-phong-hoc-tap"})"> Laptop Văn Phòng - Học Tập</a></li>
+                    <li><img src="https://cdn-icons-png.flaticon.com/128/735/735570.png?track=ais"><a href="@Url.Action("Cate","Laptop", new {cate ="do-hoa-ky-thuat"})"> Laptop Đồ Họa - Kỹ Thuật</a></li>
+                    <li><img src="https://cdn-icons-png.flaticon.com/128/2066/2066630.png?track=ais"><a href="@Url.Action("Cate","Laptop", new {cate ="mong-nhe"})"> Laptop Mỏng Nhẹ</a></li>
+                    <li><img src="https://cdn-icons-png.flaticon.com/128/8262/8262243.png?track=ais"><a href="@Url.Action("Cate","Laptop", new {cate ="cao-cap-sang-trong"})"> Laptop Cao Cấp - Sang Trọng</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        @RenderBody()
+    </div>
+
+    <div class="footer" style="padding-bottom:10px;">
+        <div class="container-fluid footer__box" >
+            <div class="footer__col">
+                <ul>
+                    <li><a href="">Tích điểm Quà tặng VIP</a></li>
+                    <li><a href="">Lịch sử mua hàng</a></li>
+                    <li><a href="">Tìm hiểu về mua trả góp</a></li>
+                    <li><a href="">Chính sách bảo hành</a></li>
+                    <li><a href="">Xem thêm</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <ul>
+                    <li><a href="">Giới thiệu công ty (MWG.vn)</a></li>
+                    <li><a href="">Tuyển dụng</a></li>
+                    <li><a href="">Gửi góp ý, khiếu nại</a></li>
+                    <li><a href="">Tìm siêu thị</a></li>
+                    <li><a href="">Xem bản mobile</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <ul>
+                    <li><strong>Tổng đài hỗ trợ</strong>(Miễn phí gọi)</li>
+                    <li>Khiếu nại: <span style="color: #2F80ED">1800.1062</span> (8:00 - 21:30)</li>
+                    <li>Bảo hành <span style="color: #2F80ED">1800.1064</span> (8:00 - 21:00)</li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <div class="footer__social">
+                    <a class="link__fb" href="https://www.facebook.com/thegioididongcom">
+                        <img class="logo__fb" src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        3999,9k Fan
+                    </a>
+                    <a class="link__ytb" href="https://www.youtube.com/user/TGDDVideoReviews">
+                        <img class="logo__ytb" src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        899k Đăng ký
+                    </a>
+                    <a class="link__zalo" href="https://zalo.me/936590283559458736">
+                        <img class="logo__zalo" src="https://inuvdp.com/wp-content/uploads/2022/08/logo-zalo-02.jpg">
+                        Zalo TGDĐ
+                    </a>
+                </div>
+                <div class="footer__certify">
+                    <a href="http://online.gov.vn/Home/WebDetails/20090">
+                        <img class="icon__congthuong" src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoSaleNoti.png">
+                    </a>
+                    <a href="https://www.thegioididong.com/tos#giai-quyet-khieu-nai">
+                        <img class="icon__khieunai" src="https://cenlyvietnam.vn/wp-content/uploads/2020/06/noi-khong-voi-hang-gia-400x400.png">
+                    </a>
+                    <a href="https://www.dmca.com/Protection/Status.aspx?ID=5b62e759-2a0c-4d86-b972-af903bfbc89d&refurl=https://www.thegioididong.com/">
+                        <img class="icon__protected" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNaPV7aCedREVr31qeUjwrjbOZ11CMLgHhYzuy_ha1lZNEwOOz">
+                    </a>
+                    <a href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/thegioididongcom-1632835473">
+                        <img class="icon__vjpprono1" src="https://tinnhiemmang.vn/handle_cert?id=thegioididong.com">
+                    </a>
+                </div>
+                <div class="footer__logo">
+                    <p>Website cùng tập đoàn</p>
+                    <ul class="logo__list">
+                        <li>
+                            <a href="https://www.topzone.vn/">
+                                <img class="logo__family" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAufpDY1j67wRMFrypw_I7euUHVMdhTVATXzh92Hsw-J8Gpiqy">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.dienmayxanh.com/">
+                                <img class="logo__family" src="https://i.imgur.com/OqTSS04.png">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.bachhoaxanh.com/">
+                                <img class="logo__family" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ3bkfxhWzU8Qg-X0klzWVEyrJobmkfyUe7fafUHaLen0dMDCYC">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.nhathuocankhang.com/">
+                                <img class="logo__family" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vKaHR8GN7mGF4H3IG5nYkcU7xffjt7KULsm6pORvfkVX2Z-v">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.avakids.com/">
+                                <img class="logo__family" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQzsf44BvlmiOzkI35bXwZWa-xc4YwN928tlWOFJ_IDmAtmQxvj">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.dichvutantam.com/">
+                                <img class="logo__family" src="https://i.imgur.com/mtNYo7X.png">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.4kfarm.com/">
+                                <img class="logo__family" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQuZnjz_wOIhkaM5tMxp54ZUWmSYgWEOkYp4mKAOYalTKDLtySA">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://vieclam.thegioididong.com/">
+                                <img class="logo__family" src="https://i.imgur.com/BhDns60.png">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="container-fluid footer__last">
+        <p>
+            © 2018. Công ty cổ phần Thế Giới Di Động. GPDKKD: 0303217354 do sở KH & ĐT TP.HCM cấp ngày 02/01/2007. GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 04/06/2020.
+            <br>
+            Địa chỉ: 128 Trần Quang Khải, P.Tân Định, Q.1, TP.Hồ Chí Minh. Địa chỉ liên hệ và gửi chứng từ: Lô T2-1.2, Đường D1, Đ. D1, P.Tân Phú, TP.Thủ Đức, TP.Hồ Chí Minh. Điện thoại: 028 38125960. Email:
+            <br>
+            cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt. Email: Tot.huynhvan@thegioididong.com. &nbsp;<a href="">Xem chính sách sử dụng</a>
+        </p>
+    </div>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="~/Scripts/slick.js"></script>
+</body>
+</html>

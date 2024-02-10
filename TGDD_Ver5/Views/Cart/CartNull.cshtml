@@ -1,0 +1,20 @@
+﻿@{ 
+    ViewBag.Title = "Giỏ hàng trống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .cartempty{
+        margin-bottom:200px;
+        margin-top:130px;
+    }
+</style>
+<div class="cartempty container-fluid">
+    <div><img src="https://cdn-icons-png.flaticon.com/128/10469/10469575.png?uid=R120715845&ga=GA1.1.1214305306.1697263106&track=ais"></div>
+    <div class="cart__null">Không có sản phẩm nào trong giỏ hàng</div>
+    @using (Html.BeginForm("Index","Home"))
+    {
+        <button class="btn__backHome">VỀ TRANG CHỦ</button>
+    }
+
+    <p class="when__needhelp">Khi cần trợ giúp vui lòng alo <a style="color: #288ad6;text-decoration: none;" href="https://www.facebook.com/phmthnhphc22">Phúc Phạm</a> hoặc <a style="color: #288ad6;text-decoration: none;" href="https://www.facebook.com/phmthnhphc22">079.975.84xx</a> (12:00 - 2:00)</p>
+</div>

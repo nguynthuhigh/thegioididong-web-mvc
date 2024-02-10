@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lí đánh giá</h2>
+<table class="table">
+    <tr>
+        <th>
+            Người viết đánh giá
+        </th>
+        <th>
+            Sản phẩm
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            Nội dung
+        </th>
+        <th>
+            Ngày viết đánh giá
+        </th>
+        <th>
+            Sao
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Customer.NameUser (@item.Customer.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.NamePro)
+        </td>
+        <td>
+            @foreach (var image in item.ListImages)
+            {
+                <img src="@Url.Content(image.ImagePro)" width="150" />
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCMT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-sm btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

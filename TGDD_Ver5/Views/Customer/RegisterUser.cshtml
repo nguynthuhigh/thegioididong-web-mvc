@@ -1,0 +1,60 @@
+﻿@model TGDD_Ver5.Models.Customer
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .main__login{
+        margin-top:80px;
+    }
+</style>
+@using (Html.BeginForm("RegisterUser", "Customer", FormMethod.Post))
+{
+    <div class="main__login container-fluid">
+        <img class="site__icon" src="https://cdn.tgdd.vn/2022/10/banner/TGDD-540x270.png">
+        <div class="box__login">
+            <div class="title__login">Đăng ký</div>
+            <form class="form__login">
+                <div class="input__in4">
+                    <div>
+                        <img class="iconlogin__phone" src="https://cdn-icons-png.flaticon.com/128/9656/9656411.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        <input class="txt__account" type="text" name="NameUser" placeholder="Tên khách hàng" />
+                        <br />
+                        @Html.ValidationMessageFor(model => model.NameUser)
+
+                    </div>
+                    <div>
+                        <img class="iconlogin__phone" src="https://cdn-icons-png.flaticon.com/128/9656/9656411.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        <input class="txt__account" type="text" name="Phone" placeholder="Số điện thoại" />
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Phone)
+
+                    </div>
+                    <div>
+                        <img class="iconlogin__password" src="https://cdn-icons-png.flaticon.com/128/5174/5174767.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        <input class="txt__password" type="password" name="PasswordUser" placeholder="Mật khẩu" />
+                        <br />
+                        @Html.ValidationMessageFor(model => model.PasswordUser)
+
+                    </div>
+                    <br />
+                    <div>
+                        <img class="iconlogin__password" src="https://cdn-icons-png.flaticon.com/128/5174/5174767.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                        <input class="txt__password" type="password" name="ConfirmPass" placeholder="Nhập lại mật khẩu" />
+                        <br />
+                        @Html.ValidationMessageFor(model => model.ConfirmPass)
+
+                    </div>
+
+                </div>
+                @if (ViewBag.ErrorRegister != null)
+                {
+                    <p>@ViewBag.ErrorRegister</p>
+                }
+                <input class="btn__next" type="submit" value="Đăng ký" />
+                <div class="main__login--register"><a href="@Url.Action("Index")">Bạn đã có tài khoản?</a> </div>
+            </form>
+        </div>
+    </div>
+}

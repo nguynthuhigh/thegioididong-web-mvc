@@ -1,0 +1,88 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+@{
+    Layout = null;
+}
+<link href="~/Content/Laptop/fl_laptopcss.css" rel="stylesheet" />
+<link href="~/Content/Slick/slick-button.css" rel="stylesheet" />
+<style>
+    .slick-next {
+        top: 150px;
+        right:-10px;
+    }
+    .slick-prev {
+        top: 150px;
+        left: -10px;
+    }
+    .hotdeal__product--laptop:hover .laptop__product--img img {
+        transform: translate(0, -5px);
+    }
+    .laptop__product--img img {
+        transition: transform 0.3s ease-in-out;
+    }
+    .hotdeal__product--laptop:hover .set__text--product {
+        color: #0A58CD;
+    }
+</style>
+<div class="container-fluid List__Product" style="background-color: black;width: 1200px">
+    <div class="List__Product--banner"><img src="https://i.imgur.com/xMTisHt.png"></div>
+    <div class="container-fluid List__Product--laptop filtering" id="flashsale_laptop">
+        @foreach (var item in Model)
+        {
+            <!--Item-->
+            <div class="List__Product--laptop">
+                <div class="hotdeal__product--laptop">
+                    <a href="@Url.Action("Laptop_Detail", "ProductDetail", new { id=item.ID })">
+                        <div class="laptop__product">
+                            <div class="laptop__product--installment">
+                                <span class="set--ins">Trả góp 0%</span>
+                            </div>
+                            <div class="laptop__product--img">
+                                <img class="set__img--laptop" src="@Url.Content(item.Product.ImagePro)">
+                                <img class="set__img--cpu" src="">
+                            </div>
+                            <div class="laptop__product--text">
+                                <p class="item-installment" style="background-color: @item.Bonu.RGB"> <img class="set__img--sale" src="@Url.Content(item.Bonu.Img_Bonus)"><span class="set__text--sale">@item.Bonu.Bonus_Name</span></p>
+                                <h3 class="set__text--product">@item.Product.NamePro</h3>
+                                <div class="item-compare">
+                                    <span class="set--compare">RAM @item.RAM</span>
+                                    <span class="set--compare">SSD @item.HardDrive</span>
+                                </div>
+                                <div class="item-p-old">
+                                    <div class="set--pOld">@String.Format("{0:#,0}", item.Old_Price)<sup>đ</sup></div>
+                                    <span class="set--pPercent">@item.Discount%</span>
+                                </div>
+                                <strong class="item-p-new">@String.Format("{0:#,0}", item.Price)<sup>đ</sup></strong>
+       
+                                @if (item.Product.Rating != null)
+                                {
+                                    <div class="item-rating">
+                                        @for (decimal i = 0; i < item.Product.Rating; i++)
+                                        {
+                                            <i><img class="set--iconrating" src="https://cdn-icons-png.flaticon.com/128/6543/6543586.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+
+                                        }
+
+                                        <p class="set--textrating">@item.Product.Rating</p>
+                                    </div>
+                                }
+                                <p class="set-configuration">Màn hình: @item.Product.Screen</p>
+                                <p class="set-configuration">CPU: @item.CPU</p>
+                                <p class="set-configuration">Card: @item.Product.Graphics_Card</p>
+                                <p class="set-configuration">Khối lượng: @item.Product.Mass</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+        <!--END-->
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#flashsale_laptop').slick({
+            slidesToShow: 5,
+            slidesToScroll: 5,
+        });
+    });
+</script>

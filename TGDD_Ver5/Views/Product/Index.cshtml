@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Product>
+
+@{
+    ViewBag.Title = "IndexAdmin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>Danh sách sản phẩm | @Html.ActionLink("Thêm sản phẩm", "Create", "Product")</h1>
+<table class="table">
+
+    <tr>
+        <th width="100">
+            Ảnh sản phẩm
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Ngày phát hành
+        </th>
+        <th>
+            Loại
+        </th>
+        <th>
+            Thương hiệu
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.ImagePro)" style="width:150px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamePro)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.NameCate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TradeMark.NameTM)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-sm btn-info" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-sm btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-sm btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,64 @@
+﻿.slick-next {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: -20px;
+    right: -35px;
+    border-top-left-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-left-radius: 6px;
+    z-index: 2;
+}
+    .slick-next:hover {
+        opacity: 3;
+        background-color: #ffff; /* Change background color on hover */
+        
+    }
+    .slick-prev:hover {
+        opacity: 3;
+        background-color: #ffff; /* Change background color on hover */
+    }
+.slick-prev {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: -20px;
+    left: -35px;
+    border-top-right-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-right-radius: 6px;
+    z-index: 2;
+}
+
+    .slick-prev::before {
+        position: absolute;
+        border-top: 2px solid #666;
+        border-left: 2px solid #666;
+        height: 16px;
+        width: 16px;
+        right: 5px;
+        top: 28px;
+        transform: rotate(315deg);
+    }
+
+.slick-next::before {
+    background-color:none;
+    position: absolute;
+    border-top: 2px solid #666;
+    border-left: 2px solid #666;
+    height: 16px;
+    width: 16px;
+    left: 5px;
+    top: 28px;
+    transform: rotate(135deg);
+}

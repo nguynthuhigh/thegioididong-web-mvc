@@ -1,0 +1,10 @@
+﻿@model TGDD_Ver5.Models.Voucher
+
+<link href="~/Content/Cart/index.css" rel="stylesheet" />
+
+@using (Html.BeginForm("ApplyVoucher", "Cart", FormMethod.Post))
+{
+    <p id="discount" style="border:none">
+        <input style="padding: 10px;" type="text" name="code" placeholder="Nhập mã giảm giá của bạn..."><button type="submit">Áp dụng</button>
+    </p>
+}

@@ -1,0 +1,131 @@
+﻿@model TGDD_Ver5.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+<h2>Thêm sản phẩm mới</h2>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table border="1" style="text-align:center;">
+        <tr>
+            <td>Tên sản phẩm</td>
+            <td>@Html.EditorFor(model => model.NamePro)</td>
+        </tr>
+        <tr>
+            <td>Hình ảnh sản phẩm<input type="file" name="UploadImage" onchange="ChangeImage(this,document.getElementById('previewImg'))" /></td>
+            <td>
+                <img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
+            </td>
+        </tr>
+        <tr>
+            <td>Khuyến mãi</td>
+            <td><textarea id="info" name="Promotion">@Model.Promotion</textarea></td>
+        </tr>
+        <tr>
+            <td>Ưu đãi thêm</td>
+            <td><textarea id="info" name="PromoAdd">@Model.PromoAdd</textarea></td>
+        </tr>
+        <tr>
+            <td>Bộ sản phẩm kèm theo</td>
+            <td><textarea id="info" name="PolicyPro">@Model.PromoAdd</textarea></td>
+        </tr>
+        <tr>
+            <td>Loại</td>
+            <td>
+                @Html.DropDownList("CategoryID", ViewBag.CategoryID as SelectList, htmlAttributes: new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>Nhãn hiệu</td>
+            <td>
+                @Html.DropDownList("TradeMarkID", ViewBag.TradeMarkID as SelectList, htmlAttributes: new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>Màn hình</td>
+            <td>@Html.EditorFor(model => model.Screen)</td>
+        </tr>
+        <tr>
+            <td>Card đồ họa</td>
+            <td>@Html.EditorFor(model => model.Graphics_Card)</td>
+        </tr>
+        <tr>
+            <td>Cổng kết nối</td>
+            <td>@Html.EditorFor(model => model.Connector)</td>
+        </tr>
+        <tr>
+            <td>Đặc biệt</td>
+            <td>@Html.EditorFor(model => model.Special)</td>
+        </tr>
+        <tr>
+            <td>Hệ điều hành</td>
+            <td>@Html.EditorFor(model => model.OS)</td>
+        </tr>
+        <tr>
+            <td>Thiết kế</td>
+            <td>@Html.EditorFor(model => model.Design)</td>
+        </tr>
+        <tr>
+            <td>Kích thước</td>
+            <td>@Html.EditorFor(model => model.Size)</td>
+        </tr>
+        <tr>
+            <td>Khối lượng</td>
+            <td>@Html.EditorFor(model => model.Mass)</td>
+        </tr>
+        <tr>
+            <td>Pin</td>
+            <td>@Html.EditorFor(model => model.Pin)</td>
+        </tr>
+        <tr>
+            <td>Nổi bật</td>
+            <td>
+                <select name="Chip">
+                    <option value="RTX">RTX</option>
+                    <option value="BaoHanh1">Bảo hành 1 năm</option>
+                    <option value="BaoHanh2">Bảo hành 2 năm</option>
+                    <option value="i5">i5</option>
+                    <option value="i7">i5</option>
+                    <option value="DB">Độc quyền</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Năm phát hành</td>
+            <td>@Html.EditorFor(model => model.DateRelease)</td>
+        </tr>
+        <tr>
+            <td>Hình ảnh chi tiết</td>
+            <td> @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" }) </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="info" name="Info">@Model.Info</textarea>
+            </td>
+        </tr>
+
+        @ViewBag.ErrorCreate
+        <tr>
+            <td colspan="2">
+                <input class="btn btn-success" type="submit" value="create" />
+            </td>
+        </tr>
+    </table>
+}
+<script>
+    tinymce.init({
+        selector: 'textarea#info',
+        height: 300,  // Chiều cao của trình soạn thảo văn bản
+        plugins: 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify bullist numlist outdent indent | removeformat | help',
+        menu: {
+            favs: { title: 'menu', items: 'code visualaid | searchreplace | emoticons' }
+        },
+        menubar: 'favs file edit view insert format tools table',
+        content_style: 'body { font-family: Helvetica, Arial; font-size: 16px; }'
+    });
+</script>
+

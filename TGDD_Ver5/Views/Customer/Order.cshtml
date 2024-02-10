@@ -1,0 +1,106 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Empty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    button {
+        border: none;
+        background: none;
+    }
+</style>
+@{var user = Session["Phone"] as TGDD_Ver5.Models.Customer;}
+
+<section class="container-fluid menu__box">
+    <div class="menu__left">
+        <h3 style="font-size: 16px; height: 0px;">
+            <span>@user.Gender <b>@user.NameUser</b></span>
+        </h3>
+        <ul class="set__ul">
+            @using (Html.BeginForm("Order", "Order"))
+            {
+                <li class="li__listorder"><button><i><img class="icon__listorder" src="https://cdn-icons-png.flaticon.com/128/9714/9714143.png?ga=GA1.1.1214305306.1697263106&track=ais"></i> Đơn hàng đã mua</button></li>
+            }
+            @using (Html.BeginForm("Account", "Customer"))
+            {
+                <li class="li__profile"><button><i><img class="icon__profile" src="https://cdn-icons-png.flaticon.com/128/7886/7886313.png?uid=R120715845&ga=GA1.1.1214305306.1697263106&track=ais"></i>Thông tin và sổ địa chỉ</button></li>
+            }
+        </ul>
+        @using (Html.BeginForm("LogoutUser", "Customer"))
+        {
+            <button class="btn__logout">Đăng Xuất</button>
+        }
+        <div class="promote__giftvip">
+            <span class="user__point">
+                <b>Tổng điểm tích lũy:  điểm</b>
+            </span>
+            <hr width="100%">
+            <div class="promote__content">
+                <span><b>Tải app<i><img class="icon__tgdd" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></i>Quà Tặng VIP</b></span>
+                <p style="font-size: 11px; width: 208px; margin: 4px 0px 0px;">
+                    Tích & sử dụng điểm cho khách hàng thân thiết. Sản phẩm của tập đoàn MWG.
+                    <a href="https://www.thegioididong.com/tin-tuc/tat-tan-tat-ve-chuong-trinh-uu-dai-app-qua-tang-vip-link-tai-va-cach-su-dung-1481677#gioithieu">Tìm hiểu thêm</a>
+                </p>
+                <div class="OS__download">
+                    <img class="icon__download" src="https://www.thegioididong.com/lich-su-mua-hang/images/2022/appstore.png">
+                    <img class="icon__download" src="https://www.thegioididong.com/lich-su-mua-hang/images/2022/googleplay.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu__right" style="float:right; width:860px;">
+        <div class="list__order">
+            <h2 style="font: 20px arial;">Đơn hàng đã mua</h2>
+            <i>Từ 03/11/2022 - 03/11/2023</i>
+        </div>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                
+                <div class="detail__order">
+                    <div class="code__order">
+                        <div><b>Đơn hàng:</b> #@item.ID</div>
+                        <b class="success__order">
+                            @if (item.Status_Order == null)
+                            {<span style="color: #FFD400">Chờ thanh toán</span> }
+                            else if (item.Status_Order == true)
+                            {<span>Đã thanh toán</span> }
+                            else
+                            {<span style="color:red;">Đã hủy</span>}
+                        </b>
+                    </div>
+                    <hr>
+                    @foreach (var order_detail in item.OrderDetails)
+                    {
+                        <div class="item__content" style="width:200px;">
+                            <a href="">
+                                <i><img class="icon__product" style="width:110px;height:80px" src="@Url.Content(order_detail.ProDetail.Product.ImagePro)"></i>
+                            </a>
+                            @order_detail.ProDetail.Product.NamePro
+                        </div>
+                    }
+                        <div>
+                            <div class="content__right">
+                                <p></p>
+                                <p>Tổng tiền: <span style="font-size: 16px;">@item.Total_Price<sup>đ</sup></span></p>
+                            </div>
+                        </div>
+                        <div class="link__detail">
+                            <a class="btn__detailfull" href="@Url.Action("OrderDetails", "Customer", new {id =item.ID})">Xem chi tiết</a>
+                        </div>
+                    
+
+                </div>
+            }
+        }
+        else
+        {
+            <p>Không có đơn hàng nào được tìm thấy.</p>
+        }
+    </div>
+
+
+</section>
+

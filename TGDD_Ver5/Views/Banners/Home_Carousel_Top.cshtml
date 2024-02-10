@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Banner>
+@{
+    Layout = null;
+}
+<style>
+    .carousel {
+        margin-left: 10px;
+    }
+</style>
+<div class="header__top--banner">
+
+    <div class="banner__media--top">
+        <div class="container-fluid media__slides--top">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-inner">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="carousel-item @(item == Model.First() ? "active" : "")">
+                            <img src="@Url.Content(item.ImgBanner)" class="d-block w-100" alt="...">
+                        </div>
+                    }
+
+                </div>
+                <button class="set__bothsides carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="btn-bothsides carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="set__bothsides carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="btn-bothsides carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

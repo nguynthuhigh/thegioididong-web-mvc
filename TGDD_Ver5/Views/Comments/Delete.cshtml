@@ -1,0 +1,47 @@
+﻿@model TGDD_Ver5.Models.Comment
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Bạn có chắc chắn muốn xóa bình luận này?</h2>
+<table class="table">
+    <tr>
+        <th>
+            Người viết đánh giá
+        </th>
+        <td>
+            @Model.Customer.NameUser (@Model.Customer.Phone)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Ảnh
+        </th>
+        <td>
+            @foreach(var image in Model.ListImages)
+            {
+                <img src="@Url.Content(image.ImagePro)" width="150" />
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nội dung
+        </th>
+        <td>
+            @Model.Content
+        </td>
+    </tr>
+</table>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+

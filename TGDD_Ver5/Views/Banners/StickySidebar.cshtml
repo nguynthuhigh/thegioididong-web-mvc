@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Banner>
+
+@{
+    Layout = null;
+}
+
+<style>
+    .sticky-sidebar .banner-left {
+        left: calc(((100vw - 1200px)/2) - 105px);
+    }
+
+    .sticky-sidebar .banner-right {
+        right: calc(((100vw - 1200px)/2) - 105px);
+    }
+
+    .sticky-sidebar a {
+        position: fixed;
+        top: 195px;
+        width: 89px;
+        display: none;
+        z-index: 5;
+    }
+
+    a {
+        text-decoration: none;
+        transition: .2s;
+        color: #288ad6;
+    }
+
+    .sticky-sidebar a img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
+<!-- Sticky Sidebar-->
+<div class="sticky-sidebar">
+
+        <a href="" class="banner-left"><img width="90" height="300" src="@Url.Content(Model.ElementAt(0).ImgBanner)"></a>
+        <a href="" class="banner-right"><img width="90" height="300" src="@Url.Content(Model.ElementAt(1).ImgBanner)"></a>
+
+
+</div>
+<!--end-->
+<script>
+    window.addEventListener('scroll', function () {
+        var scrollPosition = window.scrollY;
+
+        if (scrollPosition >= 500) {
+            document.querySelector('.banner-left').style.display = 'block'; // Hiển thị banner bên trái
+            document.querySelector('.banner-right').style.display = 'block'; // Hiển thị banner bên phải
+        } else {
+            document.querySelector('.banner-left').style.display = 'none'; // Ẩn banner bên trái
+            document.querySelector('.banner-right').style.display = 'none'; // Ẩn banner bên phải
+        }
+    });
+</script>
+

@@ -1,0 +1,634 @@
+﻿@{
+    Layout = null;
+}
+
+<link href="~/Content/Laptop/filter.css" rel="stylesheet" />
+<style type="text/css">
+    body {
+        font-size: 16px;
+        background-color: #FFFFFF;
+    }
+
+    .filter__box a {
+        text-decoration: none;
+    }
+
+        .filter__box a:focus {
+            border: 1px solid #4A90E2;
+        }
+</style>
+<div class="topbanner__filter container-fluid">
+    <section>
+        <div class="slider__banner">
+            <img src="https://cdn.tgdd.vn/2023/11/banner/msi-1200-300-1200x300.png">
+        </div>
+        <div class="promo__banner">
+            <img style="margin-bottom: 10px;" src="https://cdn.tgdd.vn/2023/04/banner/itelintel-390x97.png">
+            <img src="https://cdn.tgdd.vn/2023/02/banner/laptop-xa-kho-390-97-390x97.png">
+        </div>
+    </section>
+</div>
+<div class="container-fluid filter__box">
+    <a class="btn__filter" href="#" id="dropdownManu">
+        Hãng
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownPrice">
+        Giá
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownDemand">
+        Nhu cầu
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownScreen">
+        Màn hình
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownCPU">
+        CPU
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownRAM">
+        RAM
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownSSD">
+        Ổ cứng
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+    <a class="btn__filter" href="#" id="dropdownSpecialFeatures">
+        Tính năng đặc biệt
+        <img id="btn__dropdown" class="iconimg__dropdown" src="https://cdn-icons-png.flaticon.com/128/154/154710.png?track=ais">
+    </a>
+
+    @using (Html.BeginForm("Filter", "Laptop", FormMethod.Get))
+    {
+
+
+        <div id="dropdownLinkManu">
+            <div class="box__checkbox1">
+                <div class="arrow1"></div>
+                <!-- Checkbox with an image -->
+                <div class="btn__checkbox">
+                    <input type="checkbox" id="myCheckbox1" value="hp" />
+                    <label for="myCheckbox1">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-hp-149x40-1.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <!-- Another checkbox with a different image -->
+                    <input type="checkbox" id="myCheckbox2" value="asus" />
+                    <label for="myCheckbox2">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-asus-149x40.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <input type="checkbox" id="myCheckbox3" value="acer" />
+                    <label for="myCheckbox3">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-acer-149x40.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <!-- Another checkbox with a different image -->
+                    <input type="checkbox" id="myCheckbox4" value="lenovo" />
+                    <label for="myCheckbox4">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-lenovo-149x40.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <!-- Another checkbox with a different image -->
+                    <input type="checkbox" id="myCheckbox6" value="msi" />
+                    <label for="myCheckbox6">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-msi-149x40.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <input type="checkbox" id="myCheckbox7" value="macbook" />
+                    <label for="myCheckbox7">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-macbook-149x40.png" alt="" />
+                    </label>
+                </div>
+                <div class="btn__checkbox">
+                    <input type="checkbox" id="myCheckbox10" value="surface" />
+                    <label for="myCheckbox10">
+                        <img class="iconimg__manu" src="https://cdn.tgdd.vn/Brand/1/logo-surface-149x40-1.png" alt="" />
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <button type="submit" class="btnbtn__readmore submitFilter">Xem thêm kết quả</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkPrice">
+            <div class="box__checkbox2">
+                <div class="arrow2"></div>
+                <!-- Checkbox with an image -->
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price" data-min="0" data-max="10000000" />
+                    <label for="checkbox__price" style="padding: 8px;">
+                        Dưới 10 triệu
+                    </label>
+                </div>
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price1" data-min="10000000" data-max="15000000" />
+                    <label class="btn__price" for="checkbox__price1" style="padding: 8px;">
+                        10 - 15 triệu
+                    </label>
+                </div>
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price2" data-min="15000000" data-max="20000000"/>
+                    <label class="btn__price" for="checkbox__price2" style="padding: 8px;">
+                        15 - 20 triệu
+                    </label>
+                </div>
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price3" data-min="20000000" data-max="25000000"/>
+                    <label class="btn__price" for="checkbox__price3" style="padding: 8px;">
+                        20 - 25 triệu
+                    </label>
+                </div>
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price4" data-min="25000000" data-max="30000000"/>
+                    <label class="btn__price" for="checkbox__price4" style="padding: 8px;">
+                        25 - 30 triệu
+                    </label>
+                </div>
+                <div class="btn__checkbox2">
+                    <input type="checkbox" id="checkbox__price5" data-min="30000000" data-max="500000000"/>
+                    <label class="btn__price" for="checkbox__price5" style="padding: 8px;">
+                        Trên 30 triệu
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <button type="submit" class="btnbtn__readmore submitFilter">Xem thêm kết quả</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkDemand">
+            <div class="box__checkbox3">
+                <div class="arrow3"></div>
+
+                <div class="btn__checkbox3">
+                    <input type="checkbox" id="checkbox__demand" />
+                    <label for="checkbox__demand" style="padding: 8px;">
+                        <img class="iconimg__demand" src="https://cdn.tgdd.vn/ValueIcons/laptop-gaming.png" alt="" />Laptop Gaming
+                    </label>
+                </div>
+                <div class="btn__checkbox3">
+
+                    <input type="checkbox" id="checkbox__demand1" />
+                    <label for="checkbox__demand1" style="padding: 8px;">
+                        <img class="iconimg__demand" src="https://cdn.tgdd.vn/ValueIcons/laptop-hoc-tap-van-phong.png" alt="" />Học tập - Văn phòng
+                    </label>
+                </div>
+                <div class="btn__checkbox3">
+                    <input type="checkbox" id="checkbox__demand2" />
+                    <label for="checkbox__demand2" style="padding: 8px;">
+                        <img class="iconimg__demand" src="https://cdn.tgdd.vn/ValueIcons/laptop-do-hoa.png" alt="" />Đồ họa - Kỹ thuật
+                    </label>
+                </div>
+                <div class="btn__checkbox3">
+                    <input type="checkbox" id="checkbox__demand3" />
+                    <label for="checkbox__demand3" style="padding: 8px;">
+                        <img class="iconimg__demand" src="https://cdn.tgdd.vn/ValueIcons/laptop-mong-nhe.png" alt="" /> Mỏng nhẹ
+                    </label>
+                </div>
+                <div class="btn__checkbox3">
+                    <input type="checkbox" id="checkbox__demand4" />
+                    <label for="checkbox__demand4" style="padding: 8px;">
+                        <img class="iconimg__demand" src="https://cdn.tgdd.vn/ValueIcons/laptop-cao-cap-sang-trong.png" alt="" />Cao cấp - Sang trọng
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkScreen">
+            <div class="box__checkbox4">
+                <div class="arrow4"></div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen" />
+                    <label for="checkbox__screen">
+                        11.6 inch
+                    </label>
+                </div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen1" />
+                    <label for="checkbox__screen1">
+                        13.3 inch
+                    </label>
+                </div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen2" />
+                    <label for="checkbox__screen2">
+                        14.2 inch
+                    </label>
+                </div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen3" />
+                    <label for="checkbox__screen3">
+                        15.6 inch
+                    </label>
+                </div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen4" />
+                    <label for="checkbox__screen4">
+                        16.2 inch
+                    </label>
+                </div>
+                <div class="btn__checkbox4">
+                    <input type="checkbox" id="checkbox__screen5" />
+                    <label for="checkbox__screen5">
+                        17 inch
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkCPU">
+            <div class="box__checkbox5">
+                <div class="arrow5"></div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu" />
+                    <label for="checkbox__cpu">
+                        Intel Core i9
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu1" />
+                    <label for="checkbox__cpu1">
+                        Intel Core i7
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu2" />
+                    <label for="checkbox__cpu2">
+                        Intel Celeron/Pentium
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu3" />
+                    <label for="checkbox__cpu3">
+                        AMD Ryzen 9
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu4" />
+                    <label for="checkbox__cpu4">
+                        AMD Ryzen 7
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu5" />
+                    <label for="checkbox__cpu5">
+                        AMD Ryzen 5
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu6" />
+                    <label for="checkbox__cpu6">
+                        Apple M1
+                    </label>
+                </div>
+                <div class="btn__checkbox5">
+                    <input type="checkbox" id="checkbox__cpu7" />
+                    <label for="checkbox__cpu7">
+                        Apple M3 Max
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkRAM">
+            <div class="box__checkbox6">
+                <div style="display: flex;">
+                    <div class="arrow6"></div>
+                    <div class="btn__checkbox6">
+                        <input type="checkbox" id="checkbox__ram" />
+                        <label for="checkbox__ram">
+                            4 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox6">
+                        <input type="checkbox" id="checkbox__ram1" />
+                        <label for="checkbox__ram1">
+                            8 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox6">
+                        <input type="checkbox" id="checkbox__ram2" />
+                        <label for="checkbox__ram2">
+                            16 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox6">
+                        <input type="checkbox" id="checkbox__ram3" />
+                        <label for="checkbox__ram3">
+                            32 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox6">
+                        <input type="checkbox" id="checkbox__ram4" />
+                        <label for="checkbox__ram4">
+                            64 GB
+                        </label>
+                    </div>
+                </div>
+                <div class="btnbtn__filter1">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkSSD">
+            <div class="box__checkbox7">
+                <div style="display: flex; gap: 10px;">
+                    <div class="arrow7"></div>
+                    <div class="btn__checkbox7">
+                        <input type="checkbox" id="checkbox__ssd" />
+                        <label for="checkbox__ssd">
+                            128 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox7">
+                        <input type="checkbox" id="checkbox__ssd1" />
+                        <label for="checkbox__ssd1">
+                            256 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox7">
+                        <input type="checkbox" id="checkbox__ssd2" />
+                        <label for="checkbox__ssd2">
+                            512 GB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox7">
+                        <input type="checkbox" id="checkbox__ssd3" />
+                        <label for="checkbox__ssd3">
+                            1 TB
+                        </label>
+                    </div>
+                    <div class="btn__checkbox7">
+                        <input type="checkbox" id="checkbox__ssd4" />
+                        <label for="checkbox__ssd4">
+                            2 TB
+                        </label>
+                    </div>
+                </div>
+                <div class="btnbtn__filter1">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropdownLinkSpecialFeatures">
+            <div class="box__checkbox8">
+                <div class="arrow8"></div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs" />
+                    <label for="checkbox__SFs">
+                        CPU Intel thế hệ 13 (mới nhất)
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs1" />
+                    <label for="checkbox__SFs1">
+                        CPU Intel thế hệ 12
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs2" />
+                    <label for="checkbox__SFs2">
+                        Tiêu chuẩn Intel Evo
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs3" />
+                    <label for="checkbox__SFs3">
+                        Card rời RTX 40 series
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs4" />
+                    <label for="checkbox__SFs4">
+                        Card rời RTX 30 series
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs5" />
+                    <label for="checkbox__SFs5">
+                        Công nghệ Wifi6
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs6" />
+                    <label for="checkbox__SFs6">
+                        Có bảo mật vân tay
+                    </label>
+                </div>
+                <div class="btn__checkbox8">
+                    <input type="checkbox" id="checkbox__SFs7" />
+                    <label for="checkbox__SFs7">
+                        Có đèn bàn phím
+                    </label>
+                </div>
+                <div class="btnbtn__filter">
+                    <a href="javascript:void(0)" class="btnbtn__close">Bỏ chọn</a>
+                    <a href="#" class="btnbtn__readmore">Xem thêm kết quả</a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="min" id="min" />
+        <input type="hidden" name="max" id="max" />
+        <input type="hidden" name="tm" id="tm" value=" "/>
+    }
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.submitFilter').click(function (e) {
+            var total = '';
+            if ($('#myCheckbox1').is(':checked')) {
+                var tm = $('#myCheckbox1').val();
+                total += tm + ' ';
+            }
+
+            if ($('#myCheckbox2').is(':checked')) {
+                var tm = $('#myCheckbox2').val();
+                total += tm + ' ';
+            }
+            if ($('#myCheckbox3').is(':checked')) {
+                var tm = $('#myCheckbox3').val();
+                total += tm + ' ';
+            }
+            if ($('#myCheckbox4').is(':checked')) {
+                var tm = $('#myCheckbox4').val();
+                total += tm + ' ';
+            }
+            if ($('#myCheckbox6').is(':checked')) {
+                var tm = $('#myCheckbox6').val();
+                total += tm + ' ';
+            }
+            if ($('#myCheckbox7').is(':checked')) {
+                var tm = $('#myCheckbox7').val();
+                total += tm + ' ';
+            }
+            if ($('#myCheckbox10').is(':checked')) {
+                var tm = $('#myCheckbox10').val();
+                total += tm + ' ';
+            }
+
+            var min = 0;
+            var max = 500000000;
+             
+        
+            if ($('#checkbox__price').is(':checked')) {
+                var min_temp = parseInt($('#checkbox__price').data("min"));
+                var max_temp = parseInt($('#checkbox__price').data('max'));
+                min = Math.min(min, min_temp);
+                max = Math.min(max, max_temp);
+            }
+            /*
+            if ($('#checkbox__price1').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price1').data('min'));
+                var max2 = parseInt($('#checkbox__price1').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }     
+            }
+            if ($('#checkbox__price2').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price2').data('min'));
+                var max2 = parseInt($('#checkbox__price2').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }
+            }
+            if ($('#checkbox__price3').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price3').data('min'));
+                var max2 = parseInt($('#checkbox__price2').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }
+            }
+            if ($('#checkbox__price2').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price2').data('min'));
+                var max2 = parseInt($('#checkbox__price2').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }
+            }
+            if ($('#checkbox__price2').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price2').data('min'));
+                var max2 = parseInt($('#checkbox__price2').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }
+            }
+            if ($('#checkbox__price2').is(':checked')) {
+                var min2 = parseInt($('#checkbox__price2').data('min'));
+                var max2 = parseInt($('#checkbox__price2').data('max'));
+                if (min > 0) {
+                    min = Math.min(min, min2);
+                }
+                else {
+                    min = Math.max(min, min2);
+                }
+                if (max != 500000000) {
+                    max = Math.max(max, max2);
+                }
+                else {
+                    max = Math.min(max, max2);
+                }
+            }*/
+            for (let i = 1; i <= 6; i++) {
+                let checkboxId = '#checkbox__price' + i;
+                if ($(checkboxId).is(':checked')) {
+                    var min2 = parseInt($(checkboxId).data('min'));
+                    var max2 = parseInt($(checkboxId).data('max'));
+                    if (min > 0) {
+                        min = Math.min(min, min2);
+                    } else {
+                        min = Math.max(min, min2);
+                    }
+                    if (max != 500000000) {
+                        max = Math.max(max, max2);
+                    } else {
+                        max = Math.min(max, max2);
+                    }
+                }
+            }
+
+            document.getElementById('max').value = max;
+            document.getElementById('min').value = min;
+            document.getElementById('tm').value = tm;
+
+        });
+    });
+
+
+
+</script>
+<script src="~/Scripts/Laptop/filter.js"></script>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Color>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ColorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RGB)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ColorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RGB)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ColorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ColorID })
+        </td>
+    </tr>
+}
+
+</table>

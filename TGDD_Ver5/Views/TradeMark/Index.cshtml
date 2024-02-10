@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.TradeMark>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách nhãn hiệu | @Html.ActionLink("Thêm nhãn hiệu mới", "Create")</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên nhãn hiệu
+        </th>
+        <th>
+            Logo
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>Số lượng sản phẩm</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameTM)
+            </td>
+            <td>
+                @if (item.Logo != null)
+                {
+                    <img src="@Url.Content(item.Logo)" width="150" />
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descript)
+            </td>
+            <td>@item.Products.Count()</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-sm btn-info" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-sm btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-sm btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

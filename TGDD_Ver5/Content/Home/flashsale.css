@@ -1,0 +1,164 @@
+﻿
+/*Button*/
+#carousel_flashsale .slick-next {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: 255px;
+    right: -15px;
+    border-top-left-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-left-radius: 6px;
+    z-index: 2;
+}
+
+    #carousel_flashsale .slick-next:hover {
+        opacity: 3;
+        background-color: #ffff; /* Change background color on hover */
+    }
+
+#carousel_flashsale .slick-prev:hover {
+    opacity: 3;
+    background-color: #ffff; /* Change background color on hover */
+}
+
+#carousel_flashsale .slick-prev {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: 255px;
+    left: -15px;
+    border-top-right-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-right-radius: 6px;
+    z-index: 2;
+}
+
+    #carousel_flashsale .slick-prev::before {
+        position: absolute;
+        border-top: 2px solid #666;
+        border-left: 2px solid #666;
+        height: 16px;
+        width: 16px;
+        right: 5px;
+        top: 28px;
+        transform: rotate(315deg);
+    }
+
+#carousel_flashsale .slick-next::before {
+    background-color: none;
+    position: absolute;
+    border-top: 2px solid #666;
+    border-left: 2px solid #666;
+    height: 16px;
+    width: 16px;
+    left: 5px;
+    top: 28px;
+    transform: rotate(135deg);
+}
+
+
+
+
+
+#carousel_flashsale .slick-list {
+    margin: 0 5px;
+}
+
+.List__Product {
+    width: 1200px;
+    background-color: black;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.hotdeal__product--item {
+    width: 186px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.hotdeal__product--img img {
+    width: 100%;
+}
+
+.hotdeal__product--item a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.name-product {
+    margin: 0;
+    padding: 0;
+    font-size: .90rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-new {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #C50A00;
+}
+
+.price-and-discount {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.price-old {
+    padding: 5px;
+    font-size: 16px;
+    color: #a4a4a4 !important;
+}
+
+.price-and-discount small {
+    border-radius: 5px;
+    background-color: #fff0e9;
+    color: #eb5757;
+    padding: 5px;
+}
+
+.hotdeal__product--text {
+    font-weight: bold;
+    padding: 7px;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+
+.List__Product--item {
+    width: 1170px;
+    padding-left: 1.5px;
+    margin-top: 20px;
+}
+
+.hotdeal__product--img img:hover {
+    transform: translateY(-7px); /* Khi di chuột vào, di chuyển ảnh điểm đến vị trí mới */
+}
+
+.hotdeal__product--img img {
+    padding: 20px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.List__Product--banner img {
+    width: 1200px;
+}
+

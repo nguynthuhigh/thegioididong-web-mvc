@@ -1,0 +1,297 @@
+﻿
+.infolaptop__msi {
+    width: 203px;
+}
+
+.infolaptop__msi--installment {
+    margin: 0px 0px 10px;
+}
+
+.set__ins--laptopmsi {
+    background-color: #f1f1f1;
+    font-size: 11px;
+    font-family: Arial;
+    padding: 3px;
+    margin: 0px 4px 0px 0px;
+}
+
+.infolaptop__msi--img {
+    
+}
+
+.set__img--laptopmsi {
+    width: 202px;
+    height: 135.06px;
+    margin: 10px 0px 20px;
+}
+
+.infolaptop__msi--text {
+}
+
+.installment__laptopmsi {
+    background-color: #e91f63;
+    display: flex;
+    width: fit-content;
+    border-radius: 15px;
+    margin: 0px;
+}
+
+.set__img--hotdeal {
+    width: 18px;
+    height: 18px;
+}
+
+.set__hotdeal--laptopmsi {
+    font-size: 10px;
+    font-family: arial;
+    margin-top: 2px;
+    margin-left: 4px;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.set__img--sale {
+    width: 18px;
+    height: 18px;
+}
+
+.set__text--sale {
+    font-size: 10px;
+    font-family: arial;
+    margin: 0px 0px 0px 3px;
+    padding: 4px 0px 0px 3px;
+    color: #ffffff;
+}
+
+.set__text--laptopmsi {
+    font: 14px arial;
+    margin: 10px 0px 0px;
+}
+
+.item__compare--laptopmsi {
+
+    margin: 5px 0px 0px;
+    display: flex;
+}
+
+.set__compare--laptopmsi {
+    width: 79px;
+    overflow: hidden;
+    height: 18.5px;
+    font: 12px arial;
+    margin: 5px 5px 10px 0px;
+    padding: 4px 5px;
+    background-color: #eaeaea;
+}
+
+.laptopmsi__price--old {
+    padding: 0px;
+    font: 13px arial;
+    display: flex;
+}
+
+.set__priceold--laptopmsi {
+    color: #333333;
+    padding-right: 4px;
+    text-decoration: line-through;
+}
+
+.set__percent--laptopmsi {
+    color: #444444;
+}
+
+.laptopmsi__price--new {
+    color: #e83a45;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-bottom: 5px;
+}
+
+.item__rating--laptopmsi {
+    margin-bottom: 5px;
+    padding: 0px;
+    display: flex;
+    height: 20px;
+}
+
+.set__iconrating--laptopmsi {
+    width: 16px;
+    height: 15px;
+    margin-right: 3px;
+    margin-bottom: 30px;
+}
+
+.set__textrating--laptopmsi {
+    font-size: 11px;
+    color: #333333;
+    margin-left: 5px;
+}
+
+.set__configuration--laptopmsi {
+    font: 12px arial;
+    color: #222222;
+    line-height: 1.8;
+}
+
+.item__ss--laptopmsi {
+    font: 12px arial;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.set__iconss--laptopmsi {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.boxcontent__gaming {
+    background-color: #25304b;
+}
+
+.content__gaming {
+    width: 1200px;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.banner__gaming {
+}
+
+.block__tab {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .block__tab a {
+        text-decoration: none;
+        background-color: #fff;
+        border-radius: 20px;
+        color: #333;
+        display: block;
+        font-size: 16px;
+        line-height: 18px;
+        padding: 10px 10px;
+    }
+
+.box__mainlist {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.detail__productlist {
+    width: 234px;
+    height:550px;
+    padding: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.btn__seeallmsi {
+    display: flex;
+    justify-content: center;
+}
+
+    .btn__seeallmsi a {
+        background: linear-gradient(92.4deg,#ffd400 0%,#febf00 100%);
+        box-shadow: 0 0 20px #b88a00;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        border-radius: 5px;
+        width: 350px;
+        margin: 10px 0px 50px;
+    }
+
+
+/* -------------------------------------------------- */
+
+
+.boxcontent__macbook {
+    background-color: #f1f1f1;
+}
+
+.content__macbook {
+    width: 1200px;
+}
+
+.banner__macbook {
+    margin-bottom: 8px;
+}
+
+.btn__seeallmacbook {
+    display: flex;
+    justify-content: center;
+}
+
+    .btn__seeallmacbook a {
+        background: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        border-radius: 5px;
+        width: 350px;
+        margin: 10px 0px 50px;
+    }
+
+.boxcontent__HTVP {
+    background-color: #f1f1f1;
+}
+
+.content__HTVP {
+    width: 1200px;
+}
+
+.banner__HTVP {
+    margin-bottom: 8px;
+}
+
+.btn__seeall--HTVP {
+    display: flex;
+    justify-content: center;
+}
+
+    .btn__seeall--HTVP a {
+        background: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        border-radius: 5px;
+        width: 350px;
+        margin: 10px 0px 50px;
+    }
+
+
+.detail__productlist:hover {
+    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+    .detail__productlist:hover .set__text--laptopmsi {
+        color: #288AD6;
+    }
+
+    .detail__productlist:hover .infolaptop__msi--img img {
+        transform: translate(0, -5px);
+    }
+.infolaptop__msi--img img {
+    transition: transform 0.3s ease-in-out;
+}
+.detail__productlist a {
+    text-decoration: none;
+    color: black;
+}

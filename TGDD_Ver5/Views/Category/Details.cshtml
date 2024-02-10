@@ -1,0 +1,35 @@
+﻿@model TGDD_Ver5.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Danh sách sản phẩm loại @Model.NameCate</h2>
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh</th>
+        <th>Thương hiệu</th>
+        <th>Ngày phát hành</th>
+
+    </tr>
+
+    @foreach (var item in Model.Products)
+    {
+        
+            <tr>
+                <td>@item.NamePro</td>
+                <td><img src="@Url.Content(item.ImagePro)" width="150"/></td>
+                <td>@item.TradeMark.NameTM</td>
+                <td>@item.DateRelease</td>
+            </tr>
+
+    }
+
+
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.IDCate }, new { @class = "btn btn-sm btn-info" }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

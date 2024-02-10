@@ -1,0 +1,383 @@
+﻿ @model TGDD_Ver5.Models.ProDetail
+
+@{
+    ViewBag.Title = "Laptop " + Model.Product.NamePro + " " + Model.CPU + "/" + Model.RAM + "/" + Model.HardDrive + "/" + Model.Product.Graphics_Card;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/Slick/slick-theme.min.css" rel="stylesheet" />
+<link href="~/Content/Slick/slick.min.css" rel="stylesheet" />
+<link href="~/Content/5.3.2-bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+<style>
+    .content__box {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    .hidden__button {
+        display: flex;
+        justify-content: center;
+    }
+
+        .hidden__button button {
+            width: 345px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #2F80ED;
+            background: none;
+            font-size: 15px;
+            color: #2F80ED;
+        }
+
+    #longContent {
+        max-height: fit-content; /* Điều chỉnh chiều cao tối đa bạn muốn hiển thị ban đầu */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+        #longContent.collapsed .product__outstanding {
+            max-height: 400px; /* Điều chỉnh chiều cao khi được thu gọn */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+</style>
+<link href="~/Content/ProductDetail/Laptop_Detail.css" rel="stylesheet" />
+<link href="~/Content/Comments/Comment.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<div class="container-fluid">
+    <div class="main__box">
+        <div class="name__product">
+            <b>Laptop @Model.Product.NamePro  @Model.CPU/@Model.RAM/@Model.HardDrive/@Model.Product.Graphics_Card</b>
+        </div>
+        <hr style="border: 1px solid gray; width: 100%;">
+        <div class="content__box">
+            <div class="box__left">
+                <div id="form1" class="form-group" style="display: block;">
+                    <div class="main container-fluid">
+                        <div class="slider slider-nav">
+                            @foreach (var item in Model.Product.ListImages)
+                            {
+                                <div class="slider__banner"><img src="@Url.Content(item.ImagePro)"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div id="form2" class="form-group" style="display:none;">
+                    <div class="main container-fluid">
+                        <div class="slider slider-nav">
+
+                            @foreach (var item in Model.ListImage_2)
+                            {
+                                <div class="slider__banner"><img src="@Url.Content(item.ImagePro)"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab__img">
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone img-radio" onclick="showForm('form1')" src="https://cdn.vectorstock.com/i/preview-1x/59/28/achievement-teamwork-and-management-icon-vector-46995928.webp ">
+                        </div>
+                        <div class="tabbb__text"><a>Điểm nổi bật</a></div>
+                    </div>
+
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone img-radio" onclick="showForm('form2')" src="@Url.Content(Model.Product.ImagePro)">
+                        </div>
+                        <div class="tabbb__text"><a>@Model.Color.ColorName</a></div>
+                    </div>
+
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone clickable-image" src="https://www.mete.com.tr/m/r/sayfa/boxsize.png">
+                        </div>
+                        <div class="tabbb__text "><a>Thông số kỹ thuật</a></div>
+                    </div>
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone clickable-image_info" src="https://cdn-icons-png.flaticon.com/128/1231/1231886.png">
+                        </div>
+                        <div class="tabbb__text"><a>Thông tin sản phẩm</a></div>
+                    </div>
+                </div>
+                <div class="box__policy" style="height:fit-content">
+                    <div class="policy__content">
+                        <ul class="content__list">
+                            <li class="list__policy" style="display:flex;">
+                                <img src="https://i.imgur.com/pxdvCED.png" height="50" />
+                                <p>
+
+                                    Hư gì đổi nấy <b>12 tháng</b> tại 3353 siêu thị toàn quốc (miễn phí tháng đầu)
+                                    <a href="" style="text-decoration: none;color: blue;">Xem chi tiết </a>
+                                </p>
+                            </li>
+
+                            <li class="list__policy" style="display:flex;">
+                                <img src="https://i.imgur.com/5xs8juB.png" height="50" />
+                                <p>
+
+                                    Bảo hành <b>chính hãng điện thoại 1 năm</b> tại các trung tâm bảo hành hãng
+                                    <a href="" style="text-decoration: none;color: blue;">Xem địa chỉ bảo hành</a>
+                                </p>
+                            </li>
+
+                            <li class="list__policy" style="display:flex;">
+                                <img src="https://i.imgur.com/kirG0Da.png" height="50" />
+                                <p>
+
+                                    @Html.Raw(Model.Product.PolicyPro)
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="information__product">
+                    <div class="product__content">
+                        <h3 class="title__IP"></h3>
+                        <div id="longContent">
+                            <div class="product__outstanding" style="height:fit-content;">
+
+                                @Html.Raw(Model.Product.Info)
+
+                            </div>
+                        </div>
+                        <div class="hidden__button">
+                            <button id="showMoreBtn" s>Xem thêm</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="product__rating">
+                    <div class="box__rating">
+                        <div class="rating__title">Đánh giá Laptop @Model.Product.NamePro</div>
+
+                        <div>Hình ảnh bình luận</div>
+                        <div class="comment__img" style="display: flex; overflow: auto;">
+                            @foreach (var image in Model.Product.Comments)
+                            {
+                                foreach (var image_list in image.ListImages)
+                                {
+                                    <img src="@Url.Content(image_list.ImagePro)" width="150" />
+                                }
+                            }
+                        </div>
+                        <div class="rt__list">
+                            <div class="customer__review">
+                                @foreach (var item in Model.Product.Comments)
+                                {
+                                    <div class="cmt__top">
+                                        <p class="name__customer">@item.Customer.Gender @item.Customer.NameUser</p>
+                                        @if (item.Customer.OrderProes != null && item.Customer.OrderProes.Any())
+                                        {
+                                            var firstOrder = item.Customer.OrderProes.FirstOrDefault();
+                                            if (firstOrder != null && firstOrder.Status_Order == true)
+                                            {
+                                                <div class="confirm__buy">
+                                                    <i><img class="iconcmt__confirm" src="https://cdn-icons-png.flaticon.com/128/190/190411.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                                    Đã mua tại TGDĐ
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+
+                                    <div class="cmt__intro">
+                                        <div class="cmt__top--star">
+                                            @for (int i = 1; i <= item.Rating; i++)
+                                            {
+                                                <i><img class="iconcmt__starbuy" src="https://cdn-icons-png.flaticon.com/128/8906/8906905.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                            }
+
+
+                                        </div>
+                                        <p class="txt__intro">
+                                            <i class="iconcmt__heart"></i>Sẽ giới thiệu cho bạn bè, người thân
+                                        </p>
+                                    </div>
+                                    <div class="cmt__content ">
+                                        <p class="cmt__txt">@item.Content</p>
+                                    </div>
+                                    <div class="cmt__command">
+                                        <a href="" class="command__like">
+                                            <i><img class="iconcmt__like" src="https://cdn-icons-png.flaticon.com/128/456/456115.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>Hữu ích
+                                        </a>
+                                        <span class="used__time">| Đã dùng khoảng 8 tháng</span>
+                                    </div>
+                                }
+                            </div>
+                            <hr style="margin: 0;">
+                            <!--Comment-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="box__right">
+            <div class="box__textR">
+                <div class="price__location">Giá tại <span style="color: #0A58CD">Hồ Chí Minh</span></div>
+                <div class="price__box">
+                    <div class="box__price--new">@String.Format("{0:#,0}", Model.Price)<sup>đ</sup> *&nbsp;</div>
+                    @if (Model.Discount != null)
+                    {
+                        <div class="box__price--old">@String.Format("{0:#,0}", Model.Old_Price)<sup>đ</sup></div>
+
+                        <div class="box__price--percent">&nbsp; -@Model.Discount%&nbsp;</div>
+
+                    }
+                    <div class="box__price--installment">Trả góp 0%</div>
+
+                </div>
+                @if (@Model.Point != null)
+                {
+                    <div class="loyatli">
+                        <div class="loyatli__main">
+                            <img class="loyatli__img" src="https://cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/promote_loyalty/logo.png">
+
+                            <p class="loyatli__text"><b>+@Model.Point</b> điểm tích lũy Quà Tặng VIP</p>
+
+
+                        </div>
+                    </div>
+                }
+                <div class="promo">
+                    <div class="promo__top">
+                        <p class="pr__txtb" style="font-size:14px">Khuyến mãi</p>
+                        <i class="pr__txt" style="font-size:12px">Giá và khuyến mãi dự kiến áp dụng đến 23:00 | 31/10</i>
+                    </div>
+                    <div class="dashed--hr0"></div>
+                    <div class="promo__item">
+                        @Html.Raw(Model.Product.Promotion)
+                    </div>
+                    <div class="dashed--hr1"></div>
+                    <div class="item__interest--rate"><i style="color:red;">(*)</i> Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%, 1.5%, 2%)</div>
+                </div>
+
+                <div class="promo">
+                    <div class="promo__top">
+                        <p class="pr__txtb" style="font-size:14px">Ưu đãi thêm</p>
+
+                    </div>
+                    <div class="dashed--hr0"></div>
+                    <div class="promo__item">
+                        @Html.Raw(Model.Product.PromoAdd)
+                    </div>
+                    <div class="dashed--hr1"></div>
+
+                </div>
+            </div>
+
+            <p class="parameter__title">Cấu hình @Model.Product.NamePro</p>
+            <div class="list__parameter">
+                <div class="list__txt">
+                    <p class="txt--left">CPU:</p>
+                    <div class="txt--right">
+                        @Model.CPU
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">RAM:</p>
+                    <div class="txt--right">
+                        @Model.RAM
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Ổ Cứng:</p>
+                    <div class="txt--right">
+                        @Model.HardDrive
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Màn hình:</p>
+                    <div class="txt--right">
+                        @Model.Product.Screen
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Card màn hình:</p>
+                    <div class="txt--right">
+                        @Model.Product.Graphics_Card
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Cổng kết nối:</p>
+                    <div class="txt--right">
+                        @Model.Product.Connector
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Hệ điều hành:</p>
+                    <div class="txt--right">
+                        @Model.Product.OS
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Thiết kế:</p>
+                    <div class="txt--right">
+                        @Model.Product.Design
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Kích thước, khối lượng:</p>
+                    <div class="txt--right">
+                        @Model.Product.Size - @Model.Product.Mass
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Thời điểm ra mắt:</p>
+                    <div class="txt--right">
+                        @Model.Product.DateRelease
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn__detailedConfiguration">Xem thêm cấu hình chi tiết</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.slider-nav').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            focusOnSelect: true,
+
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function () {
+            var longContent = $('#longContent');
+            var showMoreBtn = $('#showMoreBtn');
+            var maxHeight = 300; // Điều chỉnh chiều cao tối đa bạn muốn hiển thị ban đầu
+
+            if (longContent.find('.product__outstanding').height() > maxHeight) {
+                longContent.addClass('collapsed');
+                showMoreBtn.show();
+            }
+
+            showMoreBtn.on('click', function () {
+                if (longContent.hasClass('collapsed')) {
+                    longContent.removeClass('collapsed');
+                    $(this).text('Ẩn đi');
+                } else {
+                    longContent.addClass('collapsed');
+                    $(this).text('Hiện tất cả');
+                }
+            });
+        });
+    });
+</script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/slick.min.js"></script>
+<script src="~/Scripts/slick.js"></script>
+<script src="~/Scripts/Laptop/Laptop_Details.js"></script>

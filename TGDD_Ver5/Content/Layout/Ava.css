@@ -1,0 +1,113 @@
+﻿.promote__avakids {
+    background-color: #ed1164;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 1200px;
+    color: white;
+}
+
+.promote__top {
+    display: flex;
+    padding: 0px 0px 0px 30px;
+}
+
+.promote__animation {
+}
+
+.promote__title {
+    display: flex;
+}
+
+    .promote__title p {
+        display: flex;
+        text-align: center;
+        align-items: center;
+    }
+
+.promote__title--logo {
+    width: 146px;
+    height: 33px;
+}
+
+.promote__more {
+    display: flex;
+    margin-left: auto;
+}
+
+    .promote__more a {
+        display: flex;
+        text-decoration: none;
+        color: white;
+    }
+
+    .promote__more img {
+        width: 24px;
+        height: 24px;
+    }
+
+.promote__main {
+    display: flex;
+    margin-top: 20px;
+}
+
+.promote__form {
+    background-color: #fefcec;
+    border-radius: 8px;
+    padding: 15px 10px;
+    width: 190px;
+}
+
+.promote__form--noti {
+    color: #ed1164;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 18px;
+}
+
+.input__form--promote {
+    margin-top: 10px;
+}
+
+    .input__form--promote input {
+        border: 1px solid #d6d6d6;
+        border-radius: 8px;
+        height: 38px;
+        padding: 10px;
+        width: 100%;
+    }
+
+.btn__form--promote button {
+    background-color: #bdbdbd;
+    border-radius: 8px;
+    border: unset;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.promote__form--note {
+    color: #555555;
+    font-size: 11px;
+    line-height: 17px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.promote__banner {
+    column-gap: 8px;
+    display: grid;
+    grid-auto-rows: minmax(min-content,max-content);
+    grid-template-columns: repeat(5,minmax(0,1fr));
+    padding-left: 10px;
+    width: calc(100% - 190px);
+}
+
+    .promote__banner img {
+        border-radius: 8px;
+        display: block;
+        max-width: 100%;
+        width: 100%;
+    }

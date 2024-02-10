@@ -1,0 +1,50 @@
+﻿@model TGDD_Ver5.Models.Banner
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Banners", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <table class="table">
+        <tr>
+            <td>Mã banner</td>
+            <td>
+                <select id="fruit" name="NameBanner">
+                    <option value="Home_Big_Banner">Home_Big_Banner</option>
+                    <option value="Home_Carousel_1">Home_Carousel_1</option>
+                    <option value="Home_Carousel_2">Home_Carousel_2</option>
+                    <option value="Home_Carousel_3">Home_Carousel_3</option>
+                    <option value="Home_Carousel_Top">Home_Carousel_Top</option>
+                    <option value="StickySidebar">StickySidebar</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Ảnh</td>
+            <td><input type="file" name="UploadImage" onchange="ChangeImage(this,document.getElementById('previewImg'))" /></td>
+        </tr>
+        <tr>
+            <td>Liên kết</td>
+            <td>@Html.EditorFor(model => model.LinkBanner)</td>
+        </tr>
+        <tr>
+            <td>Màu</td>
+            <td>@Html.EditorFor(model => model.Color_BG)</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

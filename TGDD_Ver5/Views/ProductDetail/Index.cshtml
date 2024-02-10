@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("SearchAdmin", "ProductDetail", FormMethod.Get))
+{
+    <div>
+        <input type="text" name="query" placeholder="Nhập từ khóa tìm kiếm" />
+        <input type="submit" value="Tìm kiếm" />
+    </div>
+}
+
+<p>
+    <h2>Danh sách hàng tồn kho</h2>
+    <a href="@Url.Action("ListProduct")" class="btn btn-sm btn-info">Danh sách hàng cần nhập</a> | <a href="@Url.Action("Create")" class="btn btn-sm btn-success">Thêm sản phẩm mới</a>
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Ảnh
+        </th>
+        <th width="150">Tên sản phẩm</th>
+        <th width="200">
+            Ổ cứng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Màu
+        </th>
+        <th>
+            Số lượng đã bán
+        </th>
+        <th>
+            Số lượng còn lại
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Product.ImagePro)" width="150" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.NamePro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HardDrive)
+            </td>
+            <td>
+                @String.Format("{0:#,0}", item.Price)₫
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.ColorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoldQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewQuantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-sm btn-info" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-sm btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-sm btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,75 @@
+﻿<style>
+    .option__promo--img{
+        width:75px;
+    }
+    .option__promo--group{
+        height:100px;
+    }
+    .option__promo a {
+        text-decoration: none;
+        color: black;
+    }
+    .container-fluid:before {
+        content: none !important; /* Vô hiệu hóa phần tử giả */
+    }
+    .container-fluid:after {
+        content: none !important; /* Vô hiệu hóa phần tử giả */
+    }
+    #gaming .option__promo--img {
+        width: 100px;
+    }
+    #camera .option__promo--img {
+        width: 90px;
+    }
+    .option__promo {
+        margin-top: -90px;
+    }
+</style>
+<div class="container-fluid option__promo">
+    <a href="https://www.thegioididong.com/khuyen-mai-soc-xa-hang-ton-kho">
+        <div class="option__promo--group">
+            <div class="option__promo--img">
+                <img src="https://cdn.tgdd.vn//content/120x120-min-240x240.gif" width="75">
+            </div>
+            <div class="option__promo--text">
+                Xả Hàng Tồn
+                Ưu Đãi To
+
+            </div>
+        </div>
+    </a>
+    <a href="https://www.thegioididong.com/dong-ho-gia-soc">
+        <div class="option__promo--group">
+            <div class="option__promo--img">
+                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn//content/icon-sale-soc-120x120.png" width="75">
+            </div>
+            <div class="option__promo--text">
+                Đồng hồ SALE TẤT
+            </div>
+        </div>
+    </a>
+    <a href="https://www.thegioididong.com/camera-giam-sat">
+        <div class="option__promo--group" id="camera">
+            <div class="option__promo--img">
+                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn//content/Frame-3-120x120-1.png" width="75">
+            </div>
+            <div class="option__promo--text">
+                Chỉ từ 590K
+                Bao lắp đặt
+            </div>
+        </div>
+    </a>
+    <a href="@Url.Action("Cate","Laptop", new {cate ="Gaming"})">
+        <div class="option__promo--group" id="gaming">
+            <div class="option__promo--img" style="margin-top:20px;">
+                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn//content/Icon-120x120-120x120-13.png" width="75">
+            </div>
+            <div class="option__promo--text">
+                Laptop Gaming
+                Giảm đến 30%
+            </div>
+        </div>
+    </a>
+   
+</div>
+

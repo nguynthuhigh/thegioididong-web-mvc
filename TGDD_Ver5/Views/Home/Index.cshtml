@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "The Gioi Di Dong";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .banner__topzone{
+        width:1200px;
+    }
+</style>
+<script>
+    $('#flashsale_Home').slick({
+        slidesToShow: 6,
+        slidesToScroll: 6,
+    });
+
+</script>
+@{Html.RenderAction("Home_Big_Banner", "Banners");
+    Html.RenderAction("Home_Carousel_1", "Banners");
+}
+
+@Html.Partial("OptionPromotion")
+<div class="container-fluid banner__topzone">
+    <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/Desk-1200x100.png">
+</div>
+@Html.Action("StickySidebar","Banners")
+@Html.Action("FlashSale", "Home")
+@Html.Action("TopSeller", "Home")
+@Html.Action("SaleLaptopGaming", "Home")
+@Html.Action("MacbookWeek", "Home")
+@Html.Partial("Service")
+
+@Html.Action("RecommendToday", "Home")
+<div id="pagedData">
+    <!-- Dữ liệu phân trang sẽ được hiển thị ở đây -->
+</div>
+<div id="pagination">
+    <!-- Các liên kết phân trang sẽ được hiển thị ở đây -->
+</div>
+
+<script>
+        // Function to load paginated data
+        function loadPage(pageNumber) {
+            $.ajax({
+                url: '@Url.Action("RecommendToday", "Home")', // Thay thế ActionName và ControllerName bằng tên thực tế của action và controller
+                type: 'GET',
+                data: { page: pageNumber }, // Truyền số trang cần lấy dữ liệu
+                success: function (result) {
+                    $('#pagedData').html(result.dataHtml); // Hiển thị dữ liệu phân trang
+                    $('#pagination').html(result.paginationHtml); // Hiển thị phân trang mới
+                },
+                error: function (error) {
+                    // Xử lý lỗi nếu có
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Load trang đầu tiên khi trang được tải
+            loadPage(1);
+
+            // Bắt sự kiện click trên các liên kết phân trang
+            $(document).on('click', '.pagination-link', function (e) {
+                e.preventDefault();
+                var pageNumber = $(this).data('page');
+                loadPage(pageNumber);
+            });
+        });
+</script>
+
+
+
+
+@Html.Action("Home_Carousel_2", "Banners")
+@Html.Action("Home_Carousel_3", "Banners")
+@Html.Action("MostSearch","Home")
+@Html.Partial("AVA")

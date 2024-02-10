@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        var cate = Model.FirstOrDefault().Product?.Category;
+        if (cate != null)
+        {
+            ViewBag.Title = cate.NameCate;
+        }
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Home/search.css" rel="stylesheet" />
+@{Html.RenderAction("Partial_Filter", "Laptop");}
+<div class="box__manufacturer--msi container-fluid">
+    <ul class="list__laptopmsi">
+        @foreach (var item in Model)
+        {
+            <li class="detail__laptopmsi">
+                <a href="@Url.Action("Laptop_Detail","ProductDetail", new { id = item.ID })">
+                    <div class="infolaptop__msi">
+                        <div class="infolaptop__msi--installment">
+                            <span class="set__ins--laptopmsi">Trả góp 0%</span>
+                        </div>
+                        <div class="infolaptop__msi--img">
+                            <img class="set__img--laptopmsi" src="@Url.Content(item.Product.ImagePro)">
+                        </div>
+                        <div class="infolaptop__msi--text">
+                            <p class="installment__laptopmsi" style="background-color:@Url.Content(item.Bonu.RGB)"><img class="set__img--hotdeal" src="@Url.Content(item.Bonu.Img_Bonus)"><span class="set__hotdeal--laptopmsi">@item.Bonu.Bonus_Name</span></p>
+                            <h3 class="set__text--laptopmsi">
+                                Laptop @item.Product.NamePro
+                            </h3>
+                            <div class="item__compare--laptopmsi">
+                                <span class="set__compare--laptopmsi">RAM @item.RAM</span>
+                                <span class="set__compare--laptopmsi">SSD @item.HardDrive</span>
+                            </div>
+                            @if (item.Discount != null)
+                            {
+                                <div class="laptopmsi__price--old">
+                                    <p class="set__priceold--laptopmsi">@String.Format("{0:#,0}", item.Old_Price)₫</p>
+                                    <span class="set__percent--laptopmsi">-@item.Discount%</span>
+                                </div>
+                            }
+
+                            <strong class="laptopmsi__price--new">@String.Format("{0:#,0}", item.Price)<sup>₫</sup></strong>
+                            <p style="color: #666; font: 13px arial; margin: 3px 0px 8px;">Quà 550.000₫</p>
+                            @if (item.Product.Rating != null)
+                            {
+                                <div class="item__rating--laptopmsi">
+                                    @for (decimal i = 0; i < item.Product.Rating; i++)
+                                    {
+                                        <i><img class="set__iconrating--laptopmsi" src="https://cdn-icons-png.flaticon.com/128/6543/6543586.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+
+                                    }
+
+                                    <p class="set__textrating--laptopmsi">@item.Product.Rating</p>
+                                </div>
+                            }
+                            <i href="" class="item__ss--laptopmsi">
+                                <i><img class="set__iconss--laptopmsi" src="https://cdn-icons-png.flaticon.com/128/9838/9838017.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                <span style="color:#2F80ED;">So sánh</span>
+                            </i>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+

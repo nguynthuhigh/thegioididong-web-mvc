@@ -1,0 +1,332 @@
+﻿@model TGDD_Ver5.Models.Cart
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body{
+        font-size:15px;
+    }
+    #back{
+        width:600px;
+    }
+    .cart__product--img button {
+        padding-left: 26px;
+    }
+    .select__custom {
+        font-size:15px;
+    }
+</style>
+<link href="~/Content/Cart/index.css" rel="stylesheet" />
+
+<div class="container-fluid" id="back"><a style="text-decoration:none" href="@Url.Action("Index","Home")">< Tiếp tục mua hàng</a></div>
+<div class="cart__main container-fluid">
+    @if (TempData["Message_Quantity"] != null)
+    {
+        <div class="alert alert-info">@TempData["Message_Quantity"]</div>
+    }
+    @foreach (var item in Model.CartDetails)
+    {
+
+        <div class="cart__product">
+
+            <div class="cart__product--img">
+                <img class="iconimg__laptop--cart" src="@Url.Content(item.ProDetail.Product.ImagePro)">
+                <div class="box__delete--cart">
+                    @using (Html.BeginForm("RemovePro", "Cart", new { id = item.ID_Pro }))
+                    {
+
+                        <button class="btn__cart--productimg">Xóa</button>
+                    }
+                </div>
+            </div>
+            <div class="cart__product--text">
+                <div class="cart__title--product">
+                    <a href="https://www.thegioididong.com/laptop/msi-cyborg-15-a12ve-i7-240vn">
+                        Laptop @item.ProDetail.Product.NamePro
+                    </a>
+                    <div class="cart__price--product">
+                        <div class="cart__price--productnew">@String.Format("{0:#,0}", item.ProDetail.Price)₫</div>
+                        <div class="cart__price--productold">@String.Format("{0:#,0}", item.ProDetail.Old_Price)₫</div>
+                    </div>
+                </div>
+
+                <small>
+                    <a style="text-decoration:none" href="#" id="toggleLink">Khuyến mãi</a>
+                    <small style="color: black; display: none;" id="hiddenContent">
+                        @Html.Raw(item.ProDetail.Product.Promotion)
+                    </small>
+                </small>
+                <div class="cart__product--color">
+                    <div class="select__color--product">Màu: @item.ProDetail.Color.ColorName</div>
+                    <div class="button__cart" style="display:flex">
+                        @using (Html.BeginForm("DecreasePro", "Cart", new { id = item.ID_Pro }))
+                        {
+                            <button type="submit" class="btn__cart" style="border-right: none;">-</button>
+                        }
+                        <button type="button" class="btn__cart">@item.Quantity</button>
+                        @using (Html.BeginForm("AddToCart", "Cart", new { id = item.ID_Pro }))
+                        {
+                            <button type="submit" class="btn__cart" style="border-left: none; color: #288ad6;">+</button>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    <div class="total__provisional">
+        <div>Tạm tính:</div>
+        <div>@String.Format("{0:#,0}", Model.Total_Price)₫</div>
+    </div>
+    <div class="cart__customer">
+        <div>THÔNG TIN TÀI KHOẢN</div>
+        <p style="margin-top: 5px;">
+            <input type="radio" name="Gender"> Anh
+            <input type="radio" name="Gender"> Chị
+        </p>
+        <div style="display: flex; justify-content: space-between;">
+            <div class="input-container">
+                <input type="text" id="username" name="NameUser" required placeholder=" " value="@Model.Customer.NameUser">
+                <label for="NameUser">Họ và tên</label>
+            </div>
+            <div class="input-container">
+                <input type="tel" id="password" name="Phone" required placeholder=" " value="@Model.Customer.Phone" disabled>
+                <label for="Phone">Số điện thoại</label>
+            </div>
+        </div>
+        <div>CHỌN CÁCH NHẬN HÀNG</div>
+        <p style="margin-top:5px; margin-bottom: 10px;">
+            <input type="radio" name="Gender" onclick="showForm('form1')"> Giao hàng tận nơi
+            <input type="radio" name="Gender" onclick="showForm('form2')"> Nhận tại cửa hàng
+        </p>
+
+
+
+        <div class="form-group" id="form1">
+            <div class="delivery__cart">
+                <div class="here"></div>
+                <p style="font:14px arial; margin: 0px 0px 10px; margin-right: 90px;">
+                    Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có)
+                </p>
+                @using (Html.BeginForm("SaveAddress", "Customer", FormMethod.Post))
+                {
+                    <div style="font-size:15px;">
+                        <select class="form-select form-select-sm mb-3 select__custom" id="city" name="city" aria-label=".form-select-sm">
+                            <option value="" selected>Chọn tỉnh thành</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm mb-3 select__custom" id="district" name="district" aria-label=".form-select-sm">
+                            <option value="" selected>Chọn quận huyện</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm select__custom" id="ward" name="ward" aria-label=".form-select-sm">
+                            <option value="" selected>Chọn phường xã</option>
+                        </select>
+                    </div>
+                    <div class="input-container" style="width: 250px; ">
+                        <input style="height: 40px;" type="text" id="username" name="address" required placeholder=" ">
+                        <label id="custom__address" for="username">Số nhà và địa chỉ</label>
+                    </div>
+                    <button>Lưu</button>
+                }
+
+                <div class="box__order--delivery">
+                    <div class="estimated__delivery--time">
+                        <div style="font: 14px arial;">
+                            <b>Giao trước 16h hôm sau</b>
+                        </div>
+                        <span style="font: 13px arial; color: #288ad6;">
+                            Chọn ngày giờ khác
+                        </span>
+                    </div>
+                    @foreach (var item in Model.CartDetails)
+                    {
+                        <div class="in4product__delivery">
+                            <a href="@Url.Action("Laptop_Detail", "ProductDetail", new { id = item.ProDetail.ID })">
+                                <img width="40" height="26" src="@Url.Content(item.ProDetail.Product.ImagePro)">
+                            </a>
+                            <div style="margin-left: 10px;">
+                                <a href="https://www.thegioididong.com/laptop/msi-cyborg-15-a12ve-i7-240vn">
+                                    Laptop @item.ProDetail.Product.NamePro
+                                </a>
+                                <div style="margin-top: -5px;">
+                                    <small>Màu: @item.ProDetail.Color.ColorName</small>
+                                    <small>Số lượng: @item.Quantity</small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <aside>
+                        <div style="font: 14px arial">
+                            <span>Tiền cọc giữ hàng:</span>
+                            <span style="color: #f30c28;">2.000.000₫ </span>
+                        </div>
+                        <small style="font: 12px arial;">Không hoàn lại khi không nhận sản phẩm</small>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" id="form2">
+            <div class="delivery__cart1">
+                <div class="here1"></div>
+                <div class="address__supermarket--delivery">
+                    <p>
+                        <i><input type="radio" name="radio"></i>
+                        <span style="font: 14px arial;">35 – 37 Trường Chinh, Phường Tân Thới Nhất, Quận 12, Thành phố Hồ Chí Minh </span>
+                        <small style="font: 12px arial; color: #e67e22;">
+                            <em><img style="margin-bottom: 2px; margin-right: 2px;" width="16" height="16" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></em>
+                            Nhận hàng sau 2 - 7 ngày
+                        </small>
+                    </p>
+                    <p>
+                        <i><input type="radio" name="radio"></i>
+                        <span style="font: 14px arial;">222 Trường Chinh, P.Tân Hưng Thuận, Q12, TP.HCM </span>
+                        <small style="font: 12px arial; color: #e67e22;">
+                            <em><img style="margin-bottom: 2px; margin-right: 2px;" width="16" height="16" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></em>
+                            Nhận hàng sau 2 - 7 ngày
+                        </small>
+                    </p>
+                    <p>
+                        <i><input type="radio" name="radio"></i>
+                        <span style="font: 14px arial;">365 Phan Văn Hớn, P.Tân Thới Nhất, Q.12, TP.HCM </span>
+                        <small style="font: 12px arial; color: #e67e22;">
+                            <em><img style="margin-bottom: 2px; margin-right: 2px;" width="16" height="16" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></em>
+                            Nhận hàng sau 2 - 7 ngày
+                        </small>
+                    </p>
+                    <p>
+                        <i><input type="radio" name="radio"></i>
+                        <span style="font: 14px arial;">260-262-264 Nguyễn Ảnh Thủ, Khu phố 2, P.Hiệp Thành, Q.12 , TP.Hồ Chí Minh </span>
+                        <small style="font: 12px arial; color: #e67e22;">
+                            <em><img style="margin-bottom: 2px; margin-right: 2px;" width="16" height="16" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></em>
+                            Nhận hàng sau 2 - 7 ngày
+                        </small>
+                    </p>
+                    <p>
+                        <i><input type="radio" name="radio"></i>
+                        <span style="font: 14px arial;">32/3 Lê Văn Khương, Phường Thới An, Quận 12, Thành phố Hồ Chí Minh  </span>
+                        <small style="font: 12px arial; color: #e67e22;">
+                            <em><img style="margin-bottom: 2px; margin-right: 2px;" width="16" height="16" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></em>
+                            Nhận hàng sau 2 - 7 ngày
+                        </small>
+                    </p>
+                    <div class="box__order--delivery1">
+                        <div class="estimated__delivery--time1">
+                            <div style="font: 14px arial;">
+                                <b>Nhận trước 20h hôm sau</b>
+                            </div>
+                            <span style="font: 13px arial; color: #288ad6;">
+                                Chọn ngày giờ khác
+                            </span>
+                        </div>
+                        @foreach (var item in Model.CartDetails)
+                        {
+                            <div class="in4product__delivery">
+                                <a href="@Url.Action("Laptop_Detail", "ProductDetail", new { id = item.ProDetail.ID })">
+                                    <img width="40" height="26" src="@Url.Content(item.ProDetail.Product.ImagePro)">
+                                </a>
+                                <div style="margin-left: 10px;">
+                                    <a href="https://www.thegioididong.com/laptop/msi-cyborg-15-a12ve-i7-240vn">
+                                        Laptop @item.ProDetail.Product.NamePro
+                                    </a>
+                                    <div style="margin-top: -5px;">
+                                        <small>Màu: @item.ProDetail.Color.ColorName</small>
+                                        <small>Số lượng: @item.Quantity</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <aside>
+                            <div style="font: 14px arial">
+                                <span>Tiền cọc giữ hàng:</span>
+                                <span style="color: #f30c28;">2.000.000₫ </span>
+                            </div>
+                            <small style="font: 12px arial;">Không hoàn lại khi không nhận sản phẩm</small>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 600px; margin-top: 10px; font: 14px arial; line-height: 25px;">
+            <div class="input-container" style="width: 540px; ">
+                <input style="height: 40px;" type="text" id="username" name="username" required placeholder=" ">
+                <label id="custom__address" for="username">Yêu cầu khác (không bắt buộc)</label>
+            </div>
+            <br>
+            <input type="checkbox"> Gọi người khác nhận hàng (nếu có)<br>
+            <input type="checkbox"> Hướng dẫn sử dụng, giải đáp thắc mắc sản phẩm
+            <br>
+            <input type="checkbox"> Xuất hóa đơn công ty
+        </div>
+    </div>
+    <div class="cart__discount__code">
+        <div class="box__voucher--vjp">
+            <img src="https://cdn-icons-png.flaticon.com/128/5944/5944252.png?ga=GA1.1.1214305306.1697263106&track=ais">
+            <div>Sử dụng mã giảm giá</div>
+        </div>
+        @Html.Action("Voucher", "Cart")
+        @if (TempData["Messenger_Succes"] != null)
+        {
+            <div class="alert alert-info" style="width:fit-content">@TempData["Messenger_Succes"] @Html.ActionLink("Xóa", "RemoveVoucher", "Cart")</div>
+        }
+        @if (TempData["Messenger"] != null)
+        {
+            <div class="alert alert-danger" style="width:fit-content">
+                @TempData["Messenger"]
+            </div>
+        }
+
+    </div>
+    <div class="cart__total__payment">
+        <div class="cart__total__money">
+            <strong>Tổng tiền:</strong>
+            <strong style="color:red">@String.Format("{0:#,0}", Model.Total_Price)₫</strong>
+        </div>
+        <hr>
+        <div style="font: 14px arial; display: flex; padding: 15px 0px 15px; align-items: center;">
+            <div>
+                Cần thanh toán trước <b>@String.Format("{0:#,0}", Model.Total_Price)₫</b> trong 24h sau khi đặt hàng để giữ hàng.
+            </div>
+        </div>
+        <div style="font: 14px arial; display:flex;">
+            <input type="checkbox" id="agreePolicy" name="agreePolicy" value="agree">
+            <div style="margin-left: 5px;">
+                Tôi đồng ý với <span style="color:#288ad6;">Chính sách xử lý dữ liệu cá nhân</span> của Thế Giới Di Động
+            </div>
+        </div>
+        @using (Html.BeginForm("AddToOrder_Test", "Order"))
+        {
+            foreach (var item in Model.CartDetails)
+            {
+                <input type="hidden" name="ids" value="@item.ID_Pro " />
+            }
+            <div>
+                <button type="submit" value="Submit" id="submitButton" disabled>
+                    <strong>ĐẶT HÀNG</strong>
+                </button>
+            </div>
+        }
+        <small>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</small>
+    </div>
+
+</div>
+<script>
+    document.getElementById('agreePolicy').addEventListener('change', function () {
+        var submitButton = document.getElementById('submitButton');
+        submitButton.disabled = !this.checked;
+    });
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="~/Scripts/Cart/Cart.js"></script>
+
+

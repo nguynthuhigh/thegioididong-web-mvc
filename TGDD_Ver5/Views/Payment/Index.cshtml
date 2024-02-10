@@ -1,0 +1,125 @@
+﻿@model TGDD_Ver5.Models.OrderPro
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Payment/Index.css" rel="stylesheet" />
+
+
+@if (Model.Status_Order == true)
+{
+    <div class="container-fluid cart__payment--title">
+        <img src="https://i.imgur.com/wobcS2i.png">
+        <strong>ĐẶT HÀNG THÀNH CÔNG</strong>
+    </div>
+}
+else if (Model.Status_Order == false)
+{
+    <div class="container-fluid cart__payment--title" style="color: #DB021B; background: #FFF8F4 ">
+        <strong>ĐƠN HÀNG ĐÃ HỦY</strong>
+    </div>
+}
+else
+{
+    <div class="container-fluid cart__payment--title">
+        <img src="https://i.imgur.com/wobcS2i.png">
+        <strong>ĐẶT HÀNG THÀNH CÔNG</strong>
+    </div>
+}
+
+
+<div class="container-fluid cart__payment">
+    @using (Html.BeginForm("Notification", "Payment", FormMethod.Post,new { id = Model.ID }))
+    {
+
+        @Html.AntiForgeryToken()
+        if (Model.Status_Order != false)
+        {
+            <div class="thanks">Cảm ơn @Model.Customer.Gender @Model.Customer.NameUser đã cho TGDD được phục vụ</div>
+        }
+
+        <div class="cart__payment--info">
+            <div class="info--title">
+                ĐƠN HÀNG #@Model.ID
+                @if (Model.Status_Order == null)
+                {
+                    <a style="color: red; text-decoration: none;" href="/Payment/Remove?id=@Model.ID"> - Hủy</a>
+                }
+                <a style="text-decoration: none;" href="@Url.Action("Order","Customer")">Quản lý đơn hàng </a>
+
+            </div>
+            <ul>
+                <li><strong>Người nhận hàng: </strong>@Model.Customer.Gender @Model.Customer.NameUser, @Model.Customer.Phone</li>
+                <li><strong>Giao đến: </strong>@Model.AddressCus</li>
+                <li>
+                    <strong>Tiền cọc giữ hàng: </strong>@String.Format("{0:#,0}", Model.Total_Price)₫
+                    <br>
+                    <small>Không hoàn lại khi không nhận sản phẩm</small>
+                </li>
+                <li><strong>Tổng tiền: <span style="color:red;">@String.Format("{0:#,0}", Model.Total_Price)₫</span></strong></li>
+            </ul>
+        </div>
+        if (Model.Status_Order == true)
+        {
+            <div class="cart__payment--status" style="color: #449D44">Đơn hàng đã được thanh toán</div>
+        }
+        else if (Model.Status_Order == false)
+        {
+            <div class="cart__payment--status" style="color: #D9021B">Đơn hàng đã hủy</div>
+        }
+        else
+        {
+            <div class="cart__payment--status" style="color: #D9021B">Đơn hàng chưa được thanh toán</div>
+        }
+        if (Model.Status_Order == null)
+        {
+            <div class="cart__payment--optionPrice">
+                <strong> Chọn số tiền muốn thanh toán trước:</strong>
+                <p>
+                    <img class="alertIcon" src="https://i.imgur.com/JM4Sy5l.png">Cần thanh toán tối thiểu <strong>@String.Format("{0:#,0}", Model.Total_Price)₫</strong> trước <strong>time</strong> để giữ hàng sau thời gian này đơn hàng sẽ tự động hủy nếu chưa được thanh toán
+                </p>
+            </div>
+            <div class="cart__payment--banking">
+                <strong>Chọn hình thức thanh toán</strong><br>
+                <input class="larger-radio" type="radio" id="paymentMethod1" name="PaymentMethod" value="Thanh toán tại siêu thị gần nhất" onclick="enableSubmit()">
+                <label for="paymentMethod1"><img src="https://i.imgur.com/LZFmgxM.png"> Thành toán tại siêu thị gần nhất</label><br />
+
+                <input class="larger-radio" type="radio" id="paymentMethod2" name="PaymentMethod" value="Chuyển khoản ngân hàng" onclick="enableSubmit()">
+                <label for="paymentMethod2"><img src="https://i.imgur.com/LZFmgxM.png"> Chuyển khoản ngân hàng</label><br />
+                @Html.ValidationMessageFor(model => model.Payment.PaymentMethod)
+
+            </div>
+
+            <div class="container-fluid btn__confirm__payment">
+                <button type="submit" id="submitButton" disabled>XÁC NHẬN</button>
+            </div>
+        }
+
+
+        <div class="cart__payment--policy">
+            <a href="">Xem chính sách hoàn tiền online</a>
+        </div>
+        <hr>
+        <p>THỜI GIAN NHẬN HÀNG</p>
+        <div class="cart__payment--time">
+            <p><strong>Giao trước 20h00 Thứ Tư</strong></p>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <img width="150" src="@Url.Content(item.ProDetail.Product.ImagePro)">
+                <span>@item.ProDetail.Product.NamePro</span><br /><div><small style="padding-right:20px"> Màu: @item.ProDetail.Color.ColorName </small><small>  Số lượng: @item.Quantity </small></div>
+            }
+
+        </div>
+    }
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <div class="btn__buyOther__product">
+            <button>Mua thêm sản phẩm khác</button>
+        </div>
+    }
+
+</div>
+
+
+<script src="~/Scripts/Payment/payment.js"></script>

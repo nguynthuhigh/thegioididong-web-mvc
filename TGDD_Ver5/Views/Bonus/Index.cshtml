@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Bonu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ảnh Bonus
+        </th>
+        <th>
+            Tên Bonus
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@Url.Content(item.Img_Bonus)" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bonus_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new {  id=item.BonusID })
+        </td>
+    </tr>
+}
+
+</table>

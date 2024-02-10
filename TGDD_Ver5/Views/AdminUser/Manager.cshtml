@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.AdminUser>
+
+@{
+    ViewBag.Title = "Manager";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách user</h2>
+<table class="table">
+    <tr>
+        <th>Tên</th>
+        <th>Chức vụ</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NameUser</td>
+            <td>@item.AdminRole</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { name = item.NameUser }, new { @class = "btn btn-sm btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { name = item.AdminRole}, new { @class = "btn btn-sm btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+

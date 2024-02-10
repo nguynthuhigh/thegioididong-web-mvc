@@ -1,0 +1,227 @@
+﻿
+#SalePhone .slick-next {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: 120px;
+    right: -15px;
+    border-top-left-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-left-radius: 6px;
+    z-index: 2;
+}
+
+    #SalePhone .slick-next:hover {
+        opacity: 3;
+        background-color: #ffff; /* Change background color on hover */
+    }
+
+#SalePhone .slick-prev:hover {
+    opacity: 3;
+    background-color: #ffff; /* Change background color on hover */
+}
+
+#SalePhone .slick-prev {
+    background: #fff !important;
+    height: 70px;
+    position: absolute;
+    width: 30px;
+    opacity: .7;
+    border: #e1e1e1;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    margin-top: 65px;
+    transform: translateY(0);
+    top: 120px;
+    left: -15px;
+    border-top-right-radius: 6px; /* Border radius for the top-left corner */
+    border-bottom-right-radius: 6px;
+    z-index: 2;
+}
+
+    #SalePhone .slick-prev::before {
+        position: absolute;
+        border-top: 2px solid #666;
+        border-left: 2px solid #666;
+        height: 16px;
+        width: 16px;
+        right: 5px;
+        top: 28px;
+        transform: rotate(315deg);
+    }
+
+#SalePhone .slick-next::before {
+    background-color: none;
+    position: absolute;
+    border-top: 2px solid #666;
+    border-left: 2px solid #666;
+    height: 16px;
+    width: 16px;
+    left: 5px;
+    top: 28px;
+    transform: rotate(135deg);
+}
+#SalePhone .slick-list {
+    margin: 0 6px;
+}
+
+
+.container-fluid {
+    padding: 0;
+}
+
+.List__Product {
+    width: 1200px;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.hotdeal__salesapsan {
+    width: 225px;
+    height: 460px;
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+
+.hotdeal__salesapsan--img img {
+    width: 100%;
+}
+
+.hotdeal__product--item a {
+    text-decoration: none;
+    color: black;
+}
+
+.name__hotdeal {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price__hotdeal {
+    margin-top: 4px;
+    font-size: 18px;
+    color: #C50A00;
+    font-weight: bold;
+}
+
+.discount__hotdeal {
+    margin-top: 4px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+    .discount__hotdeal small {
+        border-radius: 5px;
+        background-color: #fff0e9;
+        color: #eb5757;
+        padding: 5px;
+    }
+
+.hotdeal__salesapsan--text {
+    padding: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+}
+
+.item__salesapsan {
+    width: 1170px;
+    padding-left: 1.5px;
+    margin-top: 10px;
+}
+
+.hotdeal__salesapsan--img img:hover {
+    transform: translateY(-7px); /* Khi di chuột vào, di chuyển ảnh điểm đến vị trí mới */
+}
+
+.hotdeal__salesapsan--img img {
+    padding: 20px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.List__Product--banner img {
+    width: 1200px;
+}
+
+.slick-next:before {
+    background: #fff !important;
+    height: 100px;
+    position: absolute;
+    width: 30px;
+    left: -9px;
+    top: -35px;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    border: #e1e1e1;
+}
+
+.slick-prev:before {
+    background: #fff !important;
+    height: 100px;
+    position: absolute;
+    width: 30px;
+    right: -10px;
+    top: -35px;
+    filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+    border: #e1e1e1;
+}
+
+.hotdeal__installment {
+    margin: 0px 10px 10px;
+}
+
+.set__ins {
+    background-color: #f1f1f1;
+    font-size: 11px;
+    font-family: Arial;
+    padding: 3px;
+    margin: 0px 4px 0px 0px;
+}
+
+.hotdeal__salesapsan a {
+    text-decoration: none;
+}
+
+.box__price-and-discount {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item__installment {
+    background-color: red;
+    display: flex;
+    width: fit-content;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.set__img--hotdeal {
+    width: 18px;
+    height: 18px;
+}
+
+.set__text--hotdeal {
+    font-size: 10px;
+    font-family: arial;
+    margin-top: 2px;
+    margin-left: 4px;
+    color: #ffffff;
+}
+
+.vote__hotdeal {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-size: 14px;
+}

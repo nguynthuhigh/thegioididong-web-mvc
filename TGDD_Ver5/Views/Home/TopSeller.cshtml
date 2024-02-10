@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+    @{ 
+        Layout = null;
+    }
+<style>
+    .item__salesapsan__focus:focus{
+        border:none;
+    }
+    .item__salesapsan a{
+        border:none;
+        text-decoration:none;
+    }
+    .hotdeal__salesapsan:hover .hotdeal__salesapsan--img img {
+        transform: translate(0, -5px);
+    }
+    .hotdeal__salesapsan:hover .name__hotdeal {
+        color: #0A58CD;
+    }
+    .name__hotdeal{
+        color:black;
+    }
+    .hotdeal__salesapsan--img img {
+        transition: transform 0.3s ease-in-out;
+    }
+    .item__installment{
+        width:fit-content;
+    }
+</style>
+<link href="~/Content/Home/TopSeller.css" rel="stylesheet" />
+<div class="container-fluid List__Product" style="background-color:#E7226B;" id="SalePhone">
+    <div class="List__Product--banner"><img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/Deal-ngon-tgdd-1200x120-1.png"></div>
+    <div class="container-fluid item__salesapsan filtering" id="phone_home_mid">
+        <!--Start-->
+        @foreach (var item in Model)
+        {
+            <div class="item__salesapsan__focus">
+                <div class="item__salesapsan">
+                    <a href="@Url.Action("Laptop_Detail","ProductDetail",new {id = item.ID})">
+                        <div class="hotdeal__salesapsan">
+
+                            <div class="hotdeal__installment" style="margin-top: 10px; width: fit-content;">
+                                <span class="set__ins" style="color: #333;">Trả góp 0%</span>
+                            </div>
+                            <div class="hotdeal__salesapsan--img" style="padding-top:20px;padding-bottom:15px;">
+                                <img src="@Url.Content(item.Product.ImagePro)">
+                            </div>
+                            <p class="item__installment" style="background-color:@Url.Content(item.Bonu.RGB);"><img class="set__img--hotdeal" src="@Url.Content(item.Bonu.Img_Bonus)"><span class="set__text--hotdeal">@item.Bonu.Bonus_Name</span></p>
+                            <div class="hotdeal__salesapsan--text">
+
+                                <div class="name__hotdeal">@item.Product.NamePro @item.CPU @item.RAM @item.HardDrive</div>
+                                <div class="box__price-and-discount">
+                                    <div class="price__hotdeal">@String.Format("{0:#,0}", item.Price)₫</div>
+                                    <div class="discount__hotdeal" style="font-size:13px;">
+                                        <small>-@item.Discount%</small>
+                                    </div>
+                                </div>
+
+                                <div class="Content" style="font-size:15px;color:black">
+                                    <small>Quà @item.Bonu.Bonus_Name</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+        <!--end-->
+
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#phone_home_mid').slick({
+            slidesToShow: 5,
+            slidesToScroll: 5,
+        });
+    });
+</script>

@@ -1,0 +1,141 @@
+﻿.cart__payment--title {
+    background-color: #F0FFF7;
+    text-align: center;
+    padding: 10px 0px 10px;
+    color: #219653;
+    width: 600px;
+}
+
+.cart__payment {
+    background-color: white;
+    width: 600px;
+    padding: 0px 30px 30px;
+}
+
+.cart__payment--info {
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+    .cart__payment--info .info--title a {
+        float: right;
+    }
+
+    .cart__payment--info li {
+        list-style-type: circle;
+    }
+
+.cart__payment--status {
+    border: 1px dashed #FB8048;
+    border-radius: 5px;
+    text-align: center;
+    color: #FB8048;
+    padding: 10px 0px 10px;
+    background-color: #FFF8F4;
+    margin: 10px 0px 10px;
+}
+
+.cart__payment--optionPrice p {
+    background-color: #FFF1D5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.cart__payment--optionPrice .alertIcon {
+    width: 15px;
+    margin: 10px;
+}
+
+.larger-radio {
+    transform: scale(1.5);
+    margin-top: 20px;
+}
+
+.cart__payment--banking img {
+    width: 15px;
+    margin-left: 10px;
+    margin-top: -6px;
+}
+
+.cart__payment--banking li {
+    list-style-type: none;
+    margin-left: -20px;
+}
+
+.cart__payment--banking input[type="radio"]:checked + label::before {
+    background-color: black;
+    border-color: black;
+}
+
+.btn__confirm__payment {
+    width: 400px;
+    border-radius: 5px;
+    color: black;
+    background-color: #E0E0E0;
+}
+
+    .btn__confirm__payment button {
+        width: 400px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #E0E0E0;
+        color: #BDBDBD;
+    }
+    .btn__confirm__payment button {
+        width: 400px;
+        padding: 10px;
+        border: 1px solid #BDBDBD;
+        border-radius: 5px;
+        background-color: white;
+        color: #BDBDBD;
+    }
+        .btn__confirm__payment button:hover {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #BDBDBD;
+            border-radius: 5px;
+            background-color: #BDBDBD;
+            color: white;
+        }
+
+.cart__payment--policy a {
+    text-decoration: none;
+    color: #2E8EDB;
+}
+
+.cart__payment--policy {
+    text-align: center;
+    padding: 10px;
+}
+
+.btn__buyOther__product button {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #2E8EDB;
+    background-color: white;
+    color: #2E8EDB;
+    padding: 8px;
+}
+
+.cart__payment--time {
+    border-radius: 5px;
+    border: 1px solid #D6D6D6;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .cart__payment--time img {
+        width: 50px;
+    }
+
+.cart__payment--title{
+    margin-top:20px;
+    font-size:15px;
+}
+.cart__payment {
+    font-size: 15px;
+}

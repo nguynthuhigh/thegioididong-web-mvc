@@ -1,0 +1,32 @@
+﻿@model TGDD_Ver5.Models.TradeMark
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h3>Bạn có chắc chắn muốn xóa thương hiệu này không?</h3>
+<table class="table">
+    <tr>
+        <th>Tên</th>
+        <td>@Model.NameTM</td>
+    </tr>
+    <tr>
+        <th>Ảnh</th>
+        <td><img src="@Url.Content(Model.Logo)" width="150"/></td>
+    </tr>
+</table>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        if(TempData["DeleteTM"] != null)
+        {
+            <div class="alert alert-danger" style="width:fit-content">@TempData["DeleteTM"]</div>
+        }
+    }
+

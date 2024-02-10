@@ -1,0 +1,104 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông tin đơn hàng</h2>
+<link href="~/Content/Order/Index.css" rel="stylesheet" />
+<table class="table">
+    <tr>
+        @using (Html.BeginForm("Search", "Order", FormMethod.Post))
+        {
+            <td>
+
+                <select name="query">
+                    <option value="true">Đã thanh toán</option>
+                    <option value="null">Chưa thanh toán</option>
+                    <option value="false">Đã hủy</option>
+                </select>
+            </td>
+            <td><button type="submit">Tìm</button></td>
+        }
+    </tr>
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Khách hàng</th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Ngày đặt hàng
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>Phương thức thanh toán</th>
+        <th>
+            Tổng tiền
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>#@item.ID</td>
+            <td>@item.Customer.NameUser</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressCus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Order)
+            </td>
+            <td>
+                @if (item.Status_Order == null)
+                {
+                    <span style="color: #FFD400">Chờ thanh toán</span>
+                }
+                else if (item.Status_Order == true)
+                {
+                    <span style="color: #1CAC53">Đã thanh toán</span>
+                }
+                else
+                {
+                    <span style="color: #D0021B">Đã hủy</span>
+                }
+            </td>
+            <td>
+                @if (item != null && item.Payment != null)
+                {
+                    @item.Payment.PaymentMethod
+                }
+            </td>
+            <td>
+                @String.Format("{0:#,0}", item.Total_Price)<sup>đ</sup>
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-sm btn-success" })
+                @if (item.Status_Order == null)
+                {
+                    <button class="btn btn-sm btn-primary" onclick="openPopup('popup_@item.ID')">Confirm Payment</button>
+
+                }
+                <div id="popup_@item.ID" class="popup">
+                    <div class="popup-content">
+                        <span class="close" onclick="closePopup('popup_@item.ID')">&times;</span>
+                        @{
+                            Html.RenderAction("Details_Popup", "Order", new { id = item.ID });
+                        }
+                        <div class="button_action">
+                            <button id="close" onclick="closePopup('popup_@item.ID')">Cancel</button>
+                            <a href="Payment/Confirm/@item.ID"><div id="confirm">Confirm</div></a>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<script src="~/Scripts/Order/payment.js"></script>

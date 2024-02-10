@@ -1,0 +1,45 @@
+﻿@model TGDD_Ver5.Models.Voucher
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<table class="table">
+    <tr>
+        <td>Mã giảm giá</td>
+        <td>@Html.EditorFor(model => model.NameVoucher)</td>
+    </tr>
+    <tr>
+        <td>Giảm giá (%)</td>
+        <td>@Html.EditorFor(model => model.Discount)</td>
+    </tr>
+    <tr>
+        <td>Mô tả</td>
+        <td>@Html.EditorFor(model => model.Descript)</td>
+    </tr>
+    <tr>
+        <td>Đơn hàng tối thiểu</td>
+        <td>@Html.EditorFor(model => model.MinPro)</td>
+    </tr>
+    <tr>
+        <td>Số lượng</td>
+        <td>@Html.EditorFor(model => model.MinTotal)</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">
+            <input type="submit" value="Create" class="btn btn-success"/>
+        </td>
+    </tr>
+</table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-sm btn-info" })
+</div>

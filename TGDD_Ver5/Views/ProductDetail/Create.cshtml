@@ -1,0 +1,88 @@
+﻿@model TGDD_Ver5.Models.ProDetail
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Đăng bán sản phẩm</h2>
+
+
+@using (Html.BeginForm("Create", "ProductDetail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["ErrorInput"] != null)
+    {
+        <div class="alert alert-danger" style="width:fit-content">@TempData["ErrorInput"]</div>
+    }
+    <table class="table">
+        <tr>
+            <td>Chọn sản phẩm</td>
+            <td>@Html.DropDownList("ProID", ViewBag.ProID as SelectList, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Chọn màu</td>
+            <td>@Html.DropDownList("ColorID", ViewBag.ColorID as SelectList, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Chọn ưu đãi</td>
+            <td> @Html.DropDownList("BonusID", ViewBag.BonusID as SelectList, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>CPU</td>
+            <td>@Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>@Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Ổ cứng</td>
+            <td>@Html.EditorFor(model => model.HardDrive, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+
+        <tr>
+            <td>Giá</td>
+            <td>
+                @Html.EditorFor(model => model.Old_Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Old_Price, "", new { @class = "text-danger" })
+        </td>
+
+    </tr>
+    <tr>
+        <td>Giảm giá</td>
+        <td>
+            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+            </td>
+    </tr>
+    <tr>
+        <td>Số lượng</td>
+        <td>
+            @Html.EditorFor(model => model.ViewQuantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ViewQuantity, "", new { @class = "text-danger" })
+        </td>
+
+    </tr>
+    <tr>
+        <td>Hình ảnh chi tiết</td>
+        <td> @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" }) </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" style="text-align: center"><input type="submit" value="Create" class="btn btn-success" /></td>
+    </tr>
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

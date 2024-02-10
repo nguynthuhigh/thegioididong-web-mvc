@@ -1,0 +1,196 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+    @{ 
+        Layout = null;
+    }
+
+<link href="~/Content/Home/flashsale.css" rel="stylesheet" />
+<style>
+    .price-new{
+        margin-top:10px;
+        font-size:18px;
+    }
+    .hotdeal__product--item:hover .name-product {
+        color: #0A58CD;
+    }
+    .hotdeal__product--item:hover .hotdeal__product--img {
+        transform: translate(0, -5px);
+    }
+    .hotdeal__product--img {
+        transition: transform 0.3s ease-in-out;
+    }
+    .name-product {
+        height: 40px;
+        font-size: 15px;
+        border: none;
+        font-weight: normal;
+        color: black;
+    }
+    .List__Product--item a{
+        text-decoration:none;
+    }
+    .hotdeal__product--img img {
+        padding: 50px 10px 20px;
+    }
+    .price-and-discount small{
+        font-size:12px;
+        height:28px;
+    }
+    .status-bar {
+        width: 100%; 
+        height: 20px;
+        position: relative;
+        border-radius: 20px;
+        background-color: whitesmoke;
+    }
+
+    .progress {
+        left: -8px;
+        position: absolute;
+        height:100%;
+        background-color: #FCB702;
+        border-radius: 20px;
+    }
+
+    .text {
+        font-weight: normal;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #000;
+        font-size: 12px;
+    }
+
+    .status-bar-img {
+        position: absolute;
+        z-index:2;
+        width: 22px;
+        top: -9px;
+    }
+
+        .status-bar-img img {
+            width: 22px;
+        }
+    .price-old {
+        font-weight: normal;
+    }
+    .price-and-discount{
+        margin-top:0;
+    }
+    #carousel_flashsale .slick-next {
+        top: 250px;
+    }
+    #carousel_flashsale .slick-prev {
+        top: 250px;
+    }
+
+</style>
+<div class="container-fluid List__Product" id="carousel_flashsale">
+    <div class="List__Product--banner"><img src="https://cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/homev2/fs-2710-3110-theme/desk/tgdd/banner-title.gif"></div>
+    <div class="container-fluid List__Product--item filtering" id="flashsale_Home">
+        @for(int i =0;i<Model.Count();i+=2)
+        {
+            <!---->
+
+        <div class="List__Product--item">
+            @if (Model.ElementAt(i) != null)
+            {<a href="@Url.Action("Laptop_Detail","ProductDetail",new {id = Model.ElementAt(i).ID})">
+                <div class="hotdeal__product--item">
+
+                    <div class="hotdeal__product--img">
+                        <img src="@Url.Content(Model.ElementAt(i).Product.ImagePro)">
+                    </div>
+                    <div class="hotdeal__product--text">
+                        <div class="name-product">@Model.ElementAt(i).Product.NamePro</div>
+                        <div class="price-new">@String.Format("{0:#,0}", Model.ElementAt(i).Price)₫</div>
+                        <div class="price-and-discount">
+                            <div class="price-old"><s>@String.Format("{0:#,0}", Model.ElementAt(i).Old_Price)₫</s></div>
+                            <small>-@Model.ElementAt(i).Discount%</small>
+                        </div>
+                        @{
+                            double sold = Model.ElementAt(i).SoldQuantity ?? 0;
+                            double view = Model.ElementAt(i).ViewQuantity ?? 0;
+                            double total = sold + view;
+                            Model.ElementAt(i).Status = (100 / total) * view;
+                        }
+                    <div class="status-bar">
+                        <div class="status-bar-img">
+                            <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/fs-iconfire.png">
+                        </div>
+                        <div class="progress" style="width: @($"{Model.ElementAt(i).Status}%");"></div>
+                        @if (Model.ElementAt(i).ViewQuantity == 0)
+                        {
+                            <div class="text">CHÁY HÀNG</div>
+                        }
+                        else
+                        {
+                            <div class="text">Còn @Model.ElementAt(i).ViewQuantity/@total suất</div>
+                        }
+
+                    </div>
+                    </div>
+
+                </div>
+            </a>
+                            }
+
+
+            @if (i + 1 < Model.Count())
+            {
+                if (Model.ElementAt(i + 1) != null)
+                {<a href="@Url.Action("Laptop_Detail","ProductDetail",new {id = Model.ElementAt(i + 1).ID})">
+                    <div class="hotdeal__product--item">
+                        <div class="hotdeal__product--img">
+                            <img src="@Url.Content(Model.ElementAt(i+1).Product.ImagePro)">
+                        </div>
+                        <div class="hotdeal__product--text">
+                            <div class="name-product">@Model.ElementAt(i + 1).Product.NamePro</div>
+                            <div class="price-new">@String.Format("{0:#,0}", Model.ElementAt(i + 1).Price)₫</div>
+                            <div class="price-and-discount">
+                                <div class="price-old"><s>@String.Format("{0:#,0}", Model.ElementAt(i + 1).Old_Price)₫</s></div>
+                                <small>-@Model.ElementAt(i + 1).Discount%</small>
+                            </div>
+                            @{
+                                double sold = Model.ElementAt(i+1).SoldQuantity ?? 0;
+                                double view = Model.ElementAt(i+1).ViewQuantity ?? 0;
+                                double total = sold + view;
+                                Model.ElementAt(i+1).Status = (100 / total) * view;
+                            }
+                        <div class="status-bar">
+                            <div class="status-bar-img">
+                                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/fs-iconfire.png">
+                            </div>
+                            <div class="progress" style="width: @($"{Model.ElementAt(i+1).Status}%");"></div>
+                            @if (Model.ElementAt(i+1).ViewQuantity == 0)
+                            {
+                                <div class="text">CHÁY HÀNG</div>
+                            }
+                            else
+                            {
+                                <div class="text">Còn @Model.ElementAt(i+1).ViewQuantity/@total suất</div>
+                            }
+                        </div>
+                        </div>
+
+                    </div>
+                 </a>
+                }
+            }
+
+        </div>
+
+            <!--END-->
+        }
+
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#flashsale_Home').slick({
+            slidesToShow: 6,
+            slidesToScroll: 6,
+        });
+    });
+</script>
+
+

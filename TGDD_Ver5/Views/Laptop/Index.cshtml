@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+
+@{
+    ViewBag.Title = "Laptop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Laptop/index.css" rel="stylesheet" />
+
+@{
+    Html.RenderAction("TM", "Laptop");
+    Html.RenderAction("FlashSale_Laptop", "Laptop");
+    Html.RenderAction("Gaming", "Laptop");
+    Html.RenderAction("Macbook", "Laptop");
+    Html.RenderAction("Office", "Laptop");
+    Html.RenderAction("Graphic", "Laptop");
+    Html.RenderAction("Thin", "Laptop");
+    Html.RenderAction("Luxury", "Laptop");
+
+}

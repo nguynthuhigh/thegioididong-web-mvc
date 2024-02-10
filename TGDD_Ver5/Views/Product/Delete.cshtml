@@ -1,0 +1,25 @@
+﻿@model TGDD_Ver5.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<h2>Bạn có muốn xóa sản phẩm @Model.NamePro?</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    if (TempData["ErrorDelete"] != null)
+    {
+        <div class="alert alert-danger" style="width:fit-content;">@TempData["ErrorDelete"]</div>
+    }
+
+}

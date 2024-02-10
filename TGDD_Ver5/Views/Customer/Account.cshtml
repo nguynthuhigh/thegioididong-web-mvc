@@ -1,0 +1,96 @@
+﻿@model TGDD_Ver5.Models.Customer
+
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    button {
+        border: none;
+        background: none;
+    }
+</style>
+
+<section class="container-fluid menu__box">
+    <div class="menu__left">
+        <h3 style="font-size: 16px; height: 0px;">
+            <span>@Model.Gender <b>@Model.NameUser</b></span>
+        </h3>
+        <ul class="set__ul">
+            @using (Html.BeginForm("Order", "Customer"))
+            {
+                <li class="li__listorder"><button><i><img class="icon__listorder" src="https://cdn-icons-png.flaticon.com/128/9714/9714143.png?ga=GA1.1.1214305306.1697263106&track=ais"></i> Đơn hàng đã mua</button></li>
+            }
+            @using (Html.BeginForm("Account", "Customer"))
+            {
+                <li class="li__profile"><button><i><img class="icon__profile" src="https://cdn-icons-png.flaticon.com/128/7886/7886313.png?uid=R120715845&ga=GA1.1.1214305306.1697263106&track=ais"></i>Thông tin và sổ địa chỉ</button></li>
+            }
+        </ul>
+        @using (Html.BeginForm("LogoutUser", "Customer"))
+        {
+            <button class="btn__logout">Đăng Xuất</button>
+        }
+
+
+        <div class="promote__giftvip">
+            <span class="user__point">
+                <b>Tổng điểm tích lũy:  điểm</b>
+            </span>
+            <hr width="100%">
+            <div class="promote__content">
+                <span><b>Tải app<i><img class="icon__tgdd" src="https://cdn.haitrieu.com/wp-content/uploads/2021/11/Logo-The-Gioi-Di-Dong-MWG.png"></i>Quà Tặng VIP</b></span>
+                <p style="font-size: 11px; width: 208px; margin: 4px 0px 0px;">
+                    Tích & sử dụng điểm cho khách hàng thân thiết. Sản phẩm của tập đoàn MWG.
+                    <a href="https://www.thegioididong.com/tin-tuc/tat-tan-tat-ve-chuong-trinh-uu-dai-app-qua-tang-vip-link-tai-va-cach-su-dung-1481677#gioithieu">Tìm hiểu thêm</a>
+                </p>
+                <div class="OS__download">
+                    <img class="icon__download" src="https://www.thegioididong.com/lich-su-mua-hang/images/2022/appstore.png">
+                    <img class="icon__download" src="https://www.thegioididong.com/lich-su-mua-hang/images/2022/googleplay.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box__profile">
+        <h2 style="font-size:20px;">Thông tin tài khoản</h2>
+        <div class="profile__area">
+            <h3 style="font-size:14px;"><b>THÔNG TIN CÁ NHÂN</b></h3>
+            <div class="profile__info">
+                <p>Bạn @Model.NameUser - @Model.Phone</p>
+                <i>
+                    <img class="icon__editinfo" src="https://cdn-icons-png.flaticon.com/128/7270/7270042.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                </i>
+                <button style="background:none;border:none;" id="editButton">Sửa</button>
+            </div>
+            <form id="editForm" style="display: none">
+                @using (Html.BeginForm("EditProfile", "Customer", FormMethod.Post))
+                {
+                    <input type="radio" name="Gender" value="Chị" /><i style="margin-right:20px;">Chị</i>
+                    <input type="radio" name="Gender" value="Anh" /><i>Anh</i>
+                    <br />
+                    <div>Họ và tên <input style="border-radius:5px; height:30px; margin-right:50px;" type="text" name="NameUser" /> Số điện thoại: @Model.Phone</div>
+
+                    <button type="submit" style="color:#F96F3A; border:none; background:none">Lưu</button>
+
+                }
+            </form>
+        </div>
+        <div class="address__area">
+            <h3 style="font-size:14px;"><b>ĐỊA CHỈ NHẬN HÀNG</b></h3>
+            @using (Html.BeginForm("")) {
+       
+                <div>
+                    <input class="set__input" type="text" name="số nhà, số đường" placeholder="Số Nhà, Tên Đường*">
+                </div>
+                <span class="check__default">
+                    <i><input class="check__default--active" type="checkbox" value="ok"></i>
+                    <span>Đặt làm địa chỉ mặc định</span>
+                </span>
+            
+            }
+            <a class="btn__update">CẬP NHẬT</a>
+        </div>
+    </div>
+
+</section>

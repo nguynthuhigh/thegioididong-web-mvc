@@ -1,0 +1,30 @@
+﻿
+<style>
+    .cart_number {
+        position: absolute;
+        margin-top: 11px;
+        margin-left: -75px;
+        transform: translate(-50%, -50%); /* Centering trick */
+        background: #DD1C1A;
+        color: white;
+        font-weight: 700;
+        border-radius: 50%;
+        width: 18px; /* Adjust the size as needed */
+        height: 18px; /* Adjust the size as needed */
+        text-align: center;
+        line-height: 20px; /* Should match the height for vertical centering */
+        padding: 0;
+    }
+
+    .Cart_header {
+        position: relative;
+        display: inline-block;
+    }
+</style>
+@if (ViewBag.QuantityCart > 0)
+{
+    <span class="cart_number">
+        @ViewBag.QuantityCart
+    </span>
+}
+

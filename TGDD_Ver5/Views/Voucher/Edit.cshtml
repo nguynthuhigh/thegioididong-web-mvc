@@ -1,0 +1,45 @@
+﻿@model TGDD_Ver5.Models.Voucher
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <td>Mã giảm giá</td>
+            <td><input type="text" class="input-group" name="NameVoucher" value="@Model.NameVoucher" /></td>
+        </tr>
+        <tr>
+            <td>Giảm giá (%)</td>
+            <td><input type="text" class="input-group" name="Discount" value="@Model.Discount" /></td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td><input type="text" class="input-group" name="Descript" value="@Model.Descript" /></td>
+        </tr>
+        <tr>
+            <td>Đơn hàng tối thiểu</td>
+            <td><input type="text" class="input-group" name="MinPro" value="@Model.MinPro" /></td>
+        </tr>
+        <tr>
+            <td>Số lượng</td>
+            <td><input type="text" class="input-group" name="MinTotal" value="@Model.MinTotal" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center;">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+}
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-sm btn-info" })
+    </div>

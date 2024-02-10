@@ -1,0 +1,124 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Banner>
+@{
+    Layout = null;
+}
+<style>
+    .main_slick_2 {
+        margin-top: 20px;
+        font-family: Arial;
+        width: 1185px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #Home_Carousel_2 .action {
+        display: block;
+        margin: 100px auto;
+        width: 100%;
+        text-align: center;
+    }
+
+        #Home_Carousel_2 .action a {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #f30;
+            color: #fff;
+            text-decoration: none;
+        }
+
+            #Home_Carousel_2 .action a:hover {
+                background: #000;
+            }
+
+    #Home_Carousel_2 .slider__banner img {
+        border-radius: 10px;
+        width: 395px;
+    }
+
+    #Home_Carousel_2 .slick-next {
+        background: #fff !important;
+        height: 44px;
+        position: absolute;
+        width: 44px;
+        right: -35px;
+        opacity: .7;
+        border-radius: 100% !important;
+        border: #e1e1e1;
+        filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+        margin-top: -25px;
+        transform: translateY(0);
+        z-index: 2;
+    }
+
+    #Home_Carousel_2 .slick-prev {
+        background: #fff !important;
+        height: 44px;
+        position: absolute;
+        width: 44px;
+        opacity: .7;
+        border-radius: 100% !important;
+        border: 1px solid #e1e1e1;
+        left: -35px;
+        filter: drop-shadow(0 4px 7px rgba(0,0,0,.15));
+        margin-top: -25px;
+        transform: translateY(0);
+        z-index: 2;
+    }
+
+        #Home_Carousel_2 .slick-prev::before {
+            position: absolute;
+            border-top: 2px solid #666;
+            border-left: 2px solid #666;
+            height: 8px;
+            width: 8px;
+            right: 17px;
+            top: 18px;
+            transform: rotate(315deg);
+        }
+
+    #Home_Carousel_2 .slick-next::before {
+        position: absolute;
+        border-top: 2px solid #666;
+        border-left: 2px solid #666;
+        height: 8px;
+        width: 8px;
+        left: 17px;
+        top: 18px;
+        transform: rotate(135deg);
+    }
+
+    #Home_Carousel_2 .slick-slide {
+        margin: 0 5px;
+    }
+
+    #Home_Carousel_2 .slick-list {
+        margin: 0 -15px;
+    }
+
+</style>
+<div class="main_slick_2 container-fluid">
+    <h1>CHUYÊN TRANG THƯƠNG HIỆU</h1>
+    <div class="filtering" id="Home_Carousel_2">
+        @foreach (var item in Model)
+        {
+            <div class="slider__banner"><a href="@Url.Content(item.LinkBanner)"><img src="@Url.Content(item.ImgBanner)"></a></div>
+
+        }
+
+    </div>
+
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#Home_Carousel_2').slick({
+            infinity: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            focusOnSelect: true,
+            autoplay: true,
+            autoplaySpeed: 5000,
+
+        });
+    });
+
+</script>

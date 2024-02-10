@@ -1,0 +1,677 @@
+﻿@model TGDD_Ver5.Models.ProDetail
+
+@{
+    ViewBag.Title = "Laptop " + Model.Product.NamePro + " " + Model.CPU + "/" + Model.RAM + "/" + Model.HardDrive + "/" + Model.Product.Graphics_Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["Phone"] as TGDD_Ver5.Models.Customer;
+}
+<style>
+    .content__box{
+        margin:0;
+        padding:0;
+    }
+    body {
+        background-color: white;
+    }
+    .hidden__button{
+        display:flex;
+        justify-content:center;
+    }
+        .hidden__button button {
+            width: 345px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #2F80ED;
+            background: none;
+            font-size: 15px;
+            color: #2F80ED;
+        }
+    #longContent {
+        max-height: fit-content; /* Điều chỉnh chiều cao tối đa bạn muốn hiển thị ban đầu */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+        #longContent.collapsed .product__outstanding {
+            max-height: 400px; /* Điều chỉnh chiều cao khi được thu gọn */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+    .slick-prev {
+        top: 105px;
+    }
+    .slick-next{
+        top:105px;
+    }
+</style>
+<link href="~/Content/ProductDetail/Laptop_Detail.css" rel="stylesheet" />
+<link href="~/Content/Comments/Comment.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<div class="container-fluid">
+    <div class="main__box">
+        <div class="name__product">
+            <b>Laptop @Model.Product.NamePro  @Model.CPU/@Model.RAM/@Model.HardDrive/@Model.Product.Graphics_Card</b>
+        </div>
+        <hr style="border: 1px solid gray; width: 100%;">
+        <div class="content__box">
+            <div class="box__left">
+                <div id="form1" class="form-group" style="display: block;">
+                    <div class="main container-fluid">
+                        <div class="slider slider-nav">
+                            @foreach (var item in Model.Product.ListImages)
+                            {
+                                <div class="slider__banner"><img src="@Url.Content(item.ImagePro)"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div id="form2" class="form-group" style="display:none;">
+                    <div class="main container-fluid">
+                        <div class="slider slider-nav">
+
+                            @foreach (var item in Model.ListImage_2)
+                            {
+                                <div class="slider__banner"><img src="@Url.Content(item.ImagePro)"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab__img">
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone img-radio" onclick="showForm('form1')" src="https://cdn.vectorstock.com/i/preview-1x/59/28/achievement-teamwork-and-management-icon-vector-46995928.webp ">
+                        </div>
+                        <div class="tabbb__text"><a>Điểm nổi bật</a></div>
+                    </div>
+
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone img-radio" onclick="showForm('form2')" src="@Url.Content(Model.Product.ImagePro)">
+                        </div>
+                        <div class="tabbb__text"><a>@Model.Color.ColorName</a></div>
+                    </div>
+
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone clickable-image" src="https://www.mete.com.tr/m/r/sayfa/boxsize.png">
+                        </div>
+                        <div class="tabbb__text "><a>Thông số kỹ thuật</a></div>
+                    </div>
+                    <div class="tabbb">
+                        <div class="tabbb__img">
+                            <img class="img--iphone clickable-image_info" src="https://cdn-icons-png.flaticon.com/128/1231/1231886.png">
+                        </div>
+                        <div class="tabbb__text"><a>Thông tin sản phẩm</a></div>
+                    </div>
+                </div>
+                <div class="box__policy" style="height:fit-content">
+                    <div class="policy__content" >
+                        <ul class="content__list">
+                            <li class="list__policy" style="display:flex;">
+                                <img src="https://i.imgur.com/pxdvCED.png" height="50"/>
+                                <p>
+
+                                    Hư gì đổi nấy <b>12 tháng</b> tại 3353 siêu thị toàn quốc (miễn phí tháng đầu)
+                                    <a href="" style="text-decoration: none;color: blue;">Xem chi tiết </a>
+                                </p>
+                            </li>
+
+                            <li class="list__policy"style="display:flex;">
+                                <img src="https://i.imgur.com/5xs8juB.png" height="50" />
+                                <p>
+                                    
+                                    Bảo hành <b>chính hãng điện thoại 1 năm</b> tại các trung tâm bảo hành hãng
+                                    <a href="" style="text-decoration: none;color: blue;">Xem địa chỉ bảo hành</a>
+                                </p>
+                            </li>
+
+                            <li class="list__policy"style="display:flex;">
+                                <img src="https://i.imgur.com/kirG0Da.png" height="50" />
+                                <p>
+                                    
+                                    @Html.Raw(Model.Product.PolicyPro)
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="information__product">
+                    <div class="product__content">
+                        <h3 class="title__IP"></h3>
+                        <div id="longContent">
+                            <div class="product__outstanding" style="height:fit-content;">
+
+                                @Html.Raw(Model.Product.Info)
+
+                            </div>
+                        </div>
+                        <div class="hidden__button">
+                            <button id="showMoreBtn" s>Xem thêm</button>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="product__rating">
+                    <div class="box__rating">
+                        <div class="rating__title">Đánh giá Laptop @Model.Product.NamePro</div>
+                        <div class="boxrate__top">
+                            <div class="box__stars">
+                                <div class="point__rate">
+                                    <p class="rate__number">@Model.Product.Rating</p>
+                                    @for (decimal i = 0; i < Model.Product.Rating; i++)
+                                    {
+                                        <i><img class="iconcmt__allstars" src="https://cdn-icons-png.flaticon.com/128/786/786766.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        
+                                    }
+
+                                    <a class="total__cmtrt" style="font-size:10px;">@Model.Product.Comments.Count() đánh giá</a>
+                                </div>
+                                @{ 
+                                    double one = 0, two = 0, three = 0, four = 0, five = 0;
+                                    double total = Model.Product.Comments.Count();
+
+                                    foreach (var item in Model.Product.Comments)
+                                    {
+                                        if (item.Rating == 1)
+                                        {
+                                            one++;
+                                        }
+                                        else if (item.Rating == 2)
+                                        {
+                                            two++;
+                                        }
+                                        else if (item.Rating == 3)
+                                        {
+                                            three++;
+                                        }
+                                        else if (item.Rating == 4)
+                                        {
+                                            four++;
+                                        }
+                                        else if (item.Rating == 5)
+                                        {
+                                            five++;
+                                        }
+                                    }
+                                    int percentOne, percentTwo, percentThree, percentFour,percentFive;
+                                    if (total != 0)
+                                    {
+                                        percentOne = (int)(((100.0 / total) * one));
+                                        percentTwo = (int)((100.0 / total) * two);
+                                        percentThree = (int)((100.0 / total) * three);
+                                        percentFour = (int)((100.0 / total) * four);
+                                        percentFive = (int)((100.0 / total) * five);
+                                    }
+                                    else
+                                    {
+                                        percentOne = 0;
+                                        percentTwo = 0;
+                                        percentThree = 0;
+                                        percentFour = 0;
+                                        percentFive=0;
+                                    }
+
+                                    double tempOne = (((100.0 / total) * one) / 100.0) * 250.0;
+                                    one = double.IsNaN(tempOne) ? 0 : tempOne;
+
+
+
+                                    double tempTwo = (((100.0 / total) * two) / 100.0) * 250.0;
+                                    two = double.IsNaN(tempTwo) ? 0 : tempTwo;
+
+
+                                    double tempThree = (((100.0 / total) * three) / 100.0) * 250.0;
+                                    three = double.IsNaN(tempThree) ? 0 : tempThree;
+
+
+                                    double tempFour = (((100.0 / total) * four) / 100.0) * 250.0;
+                                    four = double.IsNaN(tempFour) ? 0 : tempFour;
+
+
+                                    double tempFive = (((100.0 / total) * five) / 100.0) * 250.0;
+                                    five = double.IsNaN(tempFive) ? 0 : tempFive;
+
+                                }
+                                <div class="rate__list">
+                                    <div class="li--list">
+                                        <div class="number__stars">
+                                            5
+                                            <i><img class="iconcmt__blackstar" src="https://cdn-icons-png.flaticon.com/128/7606/7606209.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        </div>
+                                        <p class="timeline__stars" style="background-color: #ff9f00; position: absolute; margin-left:28px;z-index:1; width:@($"{five}px") ;"></p>
+                                        <p class="timeline__stars"></p>
+                                        <span class="number__percent">@percentFive%</span>
+                                    </div>
+                                    <div class="li--list">
+                                        <div class="number__stars">
+                                            4
+                                            <i><img class="iconcmt__blackstar" src="https://cdn-icons-png.flaticon.com/128/7606/7606209.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        </div>
+                                        <p class="timeline__stars" style="background-color: #ff9f00; position: absolute; margin-left:28px;z-index:3; width:@($"{four}px");"></p>
+                                        <p class="timeline__stars"></p>
+                                        <span class="number__percent">@percentFour%</span>
+                                    </div>
+                                    <div class="li--list">
+                                        <div class="number__stars">
+                                            3
+                                            <i><img class="iconcmt__blackstar" src="https://cdn-icons-png.flaticon.com/128/7606/7606209.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        </div>
+                                        <p class="timeline__stars" style="background-color: #ff9f00; position: absolute; margin-left:28px;z-index:3; width:@($"{three}px");"></p>
+                                        <p class="timeline__stars"></p>
+                                        <span class="number__percent">@percentThree%</span>
+                                    </div>
+                                    <div class="li--list">
+                                        <div class="number__stars">
+                                            2
+                                            <i><img class="iconcmt__blackstar" src="https://cdn-icons-png.flaticon.com/128/7606/7606209.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        </div>
+                                        <p class="timeline__stars" style="background-color: #ff9f00; position: absolute; margin-left:28px;z-index:3; width:@($"{two}px");"></p>
+                                        <p class="timeline__stars"></p>
+                                        <span class="number__percent">@percentTwo%</span>
+                                    </div>
+                                    <div class="li--list">
+                                        <div class="number__stars">
+                                            1
+                                            <i><img class="iconcmt__blackstar" src="https://cdn-icons-png.flaticon.com/128/7606/7606209.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                        </div>
+                                        <p class="timeline__stars" style="background-color: #ff9f00; position: absolute; margin-left:28px;z-index:2; width:@($"{one}px");"></p>
+                                        <p class="timeline__stars"></p>
+                                        <span class="number__percent">@percentOne%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>Hình ảnh bình luận</div>
+                        <div class="comment__img" style="display: flex; overflow: auto;">
+                            @foreach (var image in Model.Product.Comments)
+                            {
+                                foreach (var image_list in image.ListImages)
+                                {
+                                    <img src="@Url.Content(image_list.ImagePro)" width="150" />
+                                }
+                            }
+                        </div>
+                        <div class="rt__list">
+                            <div class="customer__review">
+                                @foreach (var item in Model.Product.Comments)
+                                {
+                                    <div class="cmt__top">
+                                        <p class="name__customer">@item.Customer.Gender @item.Customer.NameUser</p>
+                                        @if (item.Customer.OrderProes != null && item.Customer.OrderProes.Any())
+                                        {
+                                            var firstOrder = item.Customer.OrderProes.FirstOrDefault();
+                                            if (firstOrder != null && firstOrder.Status_Order == true)
+                                            {
+                                                <div class="confirm__buy">
+                                                    <i><img class="iconcmt__confirm" src="https://cdn-icons-png.flaticon.com/128/190/190411.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                                    Đã mua tại TGDĐ
+                                                </div>
+                                            }
+                                        }
+
+
+
+                                    </div>
+
+
+                                    <div class="cmt__intro">
+                                        <div class="cmt__top--star">
+                                            @for (int i = 1; i <= item.Rating; i++)
+                                            {
+                                                <i><img class="iconcmt__starbuy" src="https://cdn-icons-png.flaticon.com/128/8906/8906905.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                            }
+
+
+                                        </div>
+                                        <p class="txt__intro">
+                                            <i class="iconcmt__heart"></i>Sẽ giới thiệu cho bạn bè, người thân
+                                        </p>
+                                    </div>
+                                    <div class="cmt__content ">
+                                        <p class="cmt__txt">@item.Content</p>
+                                    </div>
+                                    <div class="cmt__command">
+                                        <a href="" class="command__like">
+                                            <i><img class="iconcmt__like" src="https://cdn-icons-png.flaticon.com/128/456/456115.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>Hữu ích
+                                        </a>
+                                        <span class="used__time">| Đã dùng khoảng 8 tháng</span>
+                                    </div>
+                                }
+                            </div>
+                            <hr style="margin: 0;">
+                            <!--Comment-->
+                            <div class="rating__evaluate">
+                                <button class="btn__view">Xem đánh giá</button>
+                                <button class="btn__write" onclick="openPopup()">Viết đánh giá</button>
+                                @using (Html.BeginForm("Create", "Comments", new { id = Model.ID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div id="popup" class="popup">
+                                        <div class="popup-content">
+                                            <span class="close" onclick="closePopup()">&times;</span>
+                                            <div class="main__rating">
+                                                <div class="container__rating">
+                                                    <div class="rating__info">
+                                                        <div class="rating__info--title"><b>Đánh giá sản phẩm</b></div><hr style="width: 100%;">
+                                                        <div class="rating__info--img"><img src="@Url.Content(Model.Product.ImagePro)" width="150"></div>
+                                                        <div class="rating__info--text"><b>Laptop @Model.Product.NamePro @Model.CPU/@Model.RAM/@Model.HardDrive</b></div>
+                                                    </div>
+                                                    <div class="star-widget">
+                                                        <input type="radio" name="rate" id="rate-5" value="5">
+                                                        <label for="rate-5" class="fas fa-star" style="margin-right: 150px;"></label>
+                                                        <input type="radio" name="rate" id="rate-4" value="4">
+                                                        <label for="rate-4" class="fas fa-star"></label>
+                                                        <input type="radio" name="rate" id="rate-3" value="3">
+                                                        <label for="rate-3" class="fas fa-star"></label>
+                                                        <input type="radio" name="rate" id="rate-2" value="2">
+                                                        <label for="rate-2" class="fas fa-star"></label>
+                                                        <input type="radio" name="rate" id="rate-1" value="1">
+                                                        <label for="rate-1" class="fas fa-star" style="margin-left: 150px;"></label>
+                                                        @if (TempData["Rating"] != null)
+                                                        {
+                                                            <div class="alert alert-danger" style="width:fit-content">@TempData["Rating"]</div>
+                                                        }
+                                                        <form action="#" style="width: 620px; align-items: center;">
+                                                            <header></header>
+                                                            <div class="textarea" style="width:620px;">
+                                                                <textarea cols="30" style="font: 14px arial;" placeholder="Mời bạn chia sẽ cảm nhận..." name="Content"></textarea>
+                                                            </div>
+                                                            <div class="form__column">
+                                                                <div class="agree__column">
+                                                                    <input style="display:flex;" type="checkbox" name="text">
+                                                                    <span>Tôi sẽ giới thiệu sản phẩm cho bạn bè, người thân</span>
+                                                                </div>
+                                                                <a href="">
+                                                                    <label for="imageInput" style="cursor: pointer; font: 14px arial;">
+                                                                        <i><img width="22" height="20" style="margin-top: -2px; margin-right: 5px;" src="https://cdn-icons-png.flaticon.com/128/7585/7585580.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                                                        <span style="color: #0071e3; margin-top: 3px;">Gửi ảnh thực tế <span style="color: #323232;">(tối đa 3 ảnh)</span></span>
+                                                                        <input type="file" id="imageInput" accept="image/*" multiple style="display:none" name="files">
+                                                                    </label>
+                                                                </a>
+                                                            </div>
+                                                            <div id="imageContainer" class="imageContainer"></div>
+                                                            <div class="rating__customer">
+                                                                @if (user != null)
+                                                                {
+                                                                    <input style="display:flex;" type="text" name="NameUser" placeholder="Họ tên (bắt buộc)" value="@user.NameUser">
+                                                                    <input style="display:flex;" type="tel" name="Phone" placeholder="Số điện thoại (bắt buộc)" value="@user.Phone">
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input style="display:flex;" type="text" name="NameUser" placeholder="Họ tên (bắt buộc)">
+                                                                    <input style="display:flex;" type="tel" name="Phone" placeholder="Số điện thoại (bắt buộc)">
+                                                                }
+
+                                                            </div>
+                                                            <div class="form__commit">
+                                                                <i><img width="18" height="18" src="https://cdn-icons-png.flaticon.com/128/6013/6013264.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                                                                TGDĐ cam kết bảo mật số điện thoại của bạn
+                                                            </div>
+                                                            <div class="btn__rating">
+                                                                <button type="submit" class="filestyle" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Your label here.">
+                                                                    Gửi đánh giá
+                                                                </button>
+                                                            </div>
+                                                            <p class="intro__txt">
+                                                                <a style="border-right: 1px solid #d8d8d8; margin-right: 5px; padding-right: 10px;" href="https://www.thegioididong.com/huong-dan-dang-binh-luan">Quy định đánh giá</a>
+                                                                <a href="https://www.thegioididong.com/tos">Chính sách bảo mật thông tin</a>
+                                                            </p>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="box__right">
+            <div class="box__textR">
+                <div class="price__location">Giá tại <span style="color: #0A58CD">Hồ Chí Minh</span></div>
+                <div class="price__box">
+                    <div class="box__price--new">@String.Format("{0:#,0}", Model.Price)<sup>đ</sup> *&nbsp;</div>
+                    @if (Model.Discount != null)
+                    {
+                        <div class="box__price--old">@String.Format("{0:#,0}", Model.Old_Price)<sup>đ</sup></div>
+
+                        <div class="box__price--percent">&nbsp; -@Model.Discount%&nbsp;</div>
+
+                    }
+                    <div class="box__price--installment">Trả góp 0%</div>
+
+                </div>
+                @if (@Model.Point != null)
+                {
+                    <div class="loyatli">
+                        <div class="loyatli__main">
+                            <img class="loyatli__img" src="https://cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/promote_loyalty/logo.png">
+
+                            <p class="loyatli__text"><b>+@Model.Point</b> điểm tích lũy Quà Tặng VIP</p>
+
+
+                        </div>
+                    </div>
+                }
+                <div class="promo">
+                    <div class="promo__top" style="height:fit-content">
+                        <p class="pr__txtb" style="font-size:14px; margin-bottom:20px;">Khuyến mãi</p>
+                        <i class="pr__txt" style="font-size:12px">Giá và khuyến mãi dự kiến áp dụng đến 23:00 | 31/10</i>
+                    </div>
+                    <div class="dashed--hr0"></div>
+                    <div class="promo__item">
+                        @Html.Raw(Model.Product.Promotion)
+                    </div>
+                    <div class="dashed--hr1"></div>
+                    <div class="item__interest--rate"><i style="color:red;">(*)</i> Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%, 1.5%, 2%)</div>
+                </div>
+                <p style="font-size:14px;margin: 0px 0px 5px;color: black;"><a href="a" style="text-decoration:none"><img class="icondetails__address" src="https://cdn-icons-png.flaticon.com/128/812/812448.png?uid=R120715845&ga=GA1.1.1214305306.1697263106">Chọn địa chỉ nhận hàng</a> để biết thời gian giao.</p>
+                <p style="font-size:14px;margin: 0px 0px 10px;color: black;"><a href="aa" style="text-decoration:none"><img class="icondetails__store" src="https://cdn-icons-png.flaticon.com/128/8479/8479846.png?uid=R120715845&ga=GA1.1.1214305306.1697263106&track=ais"> Xem siêu thị có hàng</a></p>
+                @if (Model.ViewQuantity > 0)
+                {
+                    using (Html.BeginForm("AddToCart", "Cart", new { id = Model.ID }))
+                    {
+                        <div class="btn__buy">
+                            <button class="btn__buyNow">MUA NGAY</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="btn__buy" style="color:white;background-color: whitesmoke;">
+                        <button class="btn__buyNow" style="color:black;background-color: whitesmoke;" disabled>HẾT HÀNG</button>
+                    </div>
+                }
+                <p class="callorder">Gọi đặt mua <a style="text-decoration:none" href="">079.975.84xx</a> (12:00 -- 2:00)</p>
+                <div class="promo">
+                    <div class="promo__top">
+                        <p class="pr__txtb" style="font-size:14px">Ưu đãi thêm</p>
+
+                    </div>
+                    <div class="dashed--hr0"></div>
+                    <div class="promo__item">
+                        @Html.Raw(Model.Product.PromoAdd)
+                    </div>
+                    <div class="dashed--hr1"></div>
+
+                </div>
+            </div>
+
+            <p class="parameter__title">Cấu hình @Model.Product.NamePro</p>
+            <div class="list__parameter">
+                <div class="list__txt">
+                    <p class="txt--left">CPU:</p>
+                    <div class="txt--right">
+                        @Model.CPU
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">RAM:</p>
+                    <div class="txt--right">
+                        @Model.RAM
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Ổ Cứng:</p>
+                    <div class="txt--right">
+                        @Model.HardDrive
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Màn hình:</p>
+                    <div class="txt--right">
+                        @Model.Product.Screen
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Card màn hình:</p>
+                    <div class="txt--right">
+                        @Model.Product.Graphics_Card
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Cổng kết nối:</p>
+                    <div class="txt--right">
+                        @Model.Product.Connector
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Hệ điều hành:</p>
+                    <div class="txt--right">
+                        @Model.Product.OS
+                    </div>
+                </div>
+                <div style="background-color: #ffffff;" class="list__txt">
+                    <p class="txt--left">Thiết kế:</p>
+                    <div class="txt--right">
+                        @Model.Product.Design
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Kích thước, khối lượng:</p>
+                    <div class="txt--right">
+                        @Model.Product.Size - @Model.Product.Mass
+                    </div>
+                </div>
+                <div class="list__txt">
+                    <p class="txt--left">Thời điểm ra mắt:</p>
+                    <div class="txt--right">
+                        @Model.Product.DateRelease
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn__detailedConfiguration">Xem thêm cấu hình chi tiết</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.slider-nav').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            focusOnSelect: true,
+
+        });
+    });
+    function openPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+        setTimeout(function () { }, 10);
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+
+    let selectedStars = 0;
+
+    function toggleStars(starIndex) {
+        const starElements = document.getElementsByClassName('star');
+
+        // Toggle active class for selected stars
+        for (let i = 0; i < starElements.length; i++) {
+            if (i < starIndex) {
+                starElements[i].classList.add('active');
+            } else {
+                starElements[i].classList.remove('active');
+            }
+        }
+
+        // Update the number of selected stars
+        selectedStars = starIndex;
+
+        // Log the selected stars data
+        console.log('Selected Stars:', selectedStars);
+    }
+
+</script>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function () {
+            var longContent = $('#longContent');
+            var showMoreBtn = $('#showMoreBtn');
+            var maxHeight = 300; // Điều chỉnh chiều cao tối đa bạn muốn hiển thị ban đầu
+
+            if (longContent.find('.product__outstanding').height() > maxHeight) {
+                longContent.addClass('collapsed');
+                showMoreBtn.show();
+            }
+
+            showMoreBtn.on('click', function () {
+                if (longContent.hasClass('collapsed')) {
+                    longContent.removeClass('collapsed');
+                    $(this).text('Ẩn đi');
+                } else {
+                    longContent.addClass('collapsed');
+                    $(this).text('Hiện tất cả');
+                }
+            });
+        });
+    });
+
+    document.getElementById('imageInput').addEventListener('change', handleImageUpload);
+
+    function handleImageUpload(event) {
+        const imageContainer = document.getElementById('imageContainer');
+        const files = event.target.files;
+
+        if (imageContainer.children.length + files.length > 3) {
+            alert('Bạn không thể tải quá 3 ảnh.');
+            return;
+        }
+
+        for (const file of files) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'uploadedImage';
+
+                // Resize the image (adjust the size as needed)
+                img.style.width = '48px';
+                img.style.height = '48px';
+
+                imageContainer.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+</script>
+@Html.Action("AVA","Home")
+<script src="~/Scripts/Laptop/Laptop_Details.js"></script>

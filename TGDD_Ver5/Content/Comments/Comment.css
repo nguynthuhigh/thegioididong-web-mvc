@@ -1,0 +1,316 @@
+﻿.container__rating {
+    position: relative;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+    .container__rating .post {
+        display: none;
+    }
+
+    .container__rating .text {
+        font-size: 25px;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .container__rating .edit {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 16px;
+        color: #666;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+        .container__rating .edit:hover {
+            text-decoration: underline;
+        }
+
+    .container__rating .star-widget input {
+        display: none;
+    }
+
+.star-widget label {
+    font-size: 40px;
+    color: silver;
+    padding: 10px;
+    transition: all 0.2s ease;
+    float: right;
+    text-align: center;
+}
+
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+    color: #fd4;
+}
+
+input:checked ~ label {
+    color: #fd4;
+}
+
+input#rate-5:checked ~ label {
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+
+#rate-1:checked ~ form header:before {
+    content: "Rất tệ";
+}
+
+#rate-2:checked ~ form header:before {
+    content: "Tệ";
+}
+
+#rate-3:checked ~ form header:before {
+    content: "Tạm ổn";
+}
+
+#rate-4:checked ~ form header:before {
+    content: "Tốt";
+}
+
+#rate-5:checked ~ form header:before {
+    content: "Rất tốt";
+    margin-right: 5px;
+}
+
+.container__rating form {
+    display: none;
+}
+
+input:checked ~ form {
+    display: block;
+    margin-left: 2px;
+}
+
+form header {
+    width: 100%;
+    font-size: 25px;
+    color: black;
+    font-weight: 500;
+    margin: 65px 0 20px 0px;
+    text-align: center;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+form .textarea {
+    height: 111px;
+    width: 620px;
+}
+
+    form .textarea textarea {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        color: black;
+        border-radius: 5px;
+        background: white;
+        padding: 10px;
+        font-size: 17px;
+        resize: none;
+        border: 1px solid #e5e5e5;
+    }
+
+.textarea textarea:focus {
+    border-color: #444444;
+}
+
+
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+    border-radius: 15px;
+    position: absolute;
+    width: 680px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: none;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.rating__info {
+    text-align: center;
+}
+
+.rating__info--title {
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.rating__info--img {
+    padding: 30px;
+    padding-bottom: 15px;
+}
+
+.rating__info--text {
+    padding: 15px;
+}
+
+
+
+.box__btn--evaluate {
+    display: flex;
+    margin-top: 25px;
+}
+
+.btn__write--evaluate {
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    display: block;
+    line-height: 17px;
+    padding: 14px 10px;
+    text-align: center;
+    transition: 0.5s;
+    width: 317.52px;
+    background-color: #0071e3;
+    border: 1px solid #0071e3;
+}
+
+    .btn__write--evaluate:hover {
+        background-color: white;
+        color: #0071e3;
+    }
+
+.form__column {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0 12px;
+}
+
+    .form__column a label {
+        text-decoration: none;
+        font: 14px arial;
+        display: flex;
+    }
+
+.agree__column {
+    cursor: pointer;
+    font: 14px arial;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+}
+
+    .agree__column span {
+        margin-left: 5px;
+        margin-top: 1px;
+    }
+
+.rating__customer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+form .rating__customer input {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    color: #757575;
+    font-size: 14px;
+    height: 50px;
+    line-height: 17px;
+    padding: 10px;
+    width: 49%;
+}
+
+.form__commit {
+    display: flex;
+    margin-top: 10px;
+    font: 13px arial;
+    align-items: center;
+}
+
+    .form__commit img {
+        margin-right: 5px;
+    }
+
+.btn__rating button {
+    background-color: red;
+}
+
+form .btn__rating button {
+    background-color: #0071e3;
+    border-radius: 12px;
+    border: 1px solid #0071e3;
+    cursor: pointer;
+    color: #fff;
+    display: block;
+    margin-top: 10px;
+    padding: 15px;
+    transition: .3s;
+    width: 100%;
+    height: 50px;
+    font-size: 14px;
+}
+
+    form .btn__rating button:hover {
+        background: white;
+        color: #0071E3;
+    }
+
+.intro__txt {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+    .intro__txt a {
+        text-decoration: none;
+        color: #0071e3;
+    }
+
+/* của phần up ảnh */
+#imageContainer {
+    display: flex;
+    margin-top: 20px;
+    width: 180px;
+}
+
+.imageContainer {
+    margin-bottom: 10px;
+    margin-top: -20px;
+    margin-left: 398.5px;
+}
+
+.uploadedImage {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+    position: relative;
+    margin-right: 11px;
+}
+/* của phần up ảnh */

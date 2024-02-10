@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TGDD_Ver5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AddressCu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneCus" Type="Int32" />
+    <Property Name="AddressCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_AddressCus_Customer" FromRole="AddressCus" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="NameUser" />
+    </Key>
+    <Property Name="NameUser" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="NameBanner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImgBanner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LinkBanner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Color_BG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Bonu">
+    <Key>
+      <PropertyRef Name="BonusID" />
+    </Key>
+    <Property Name="BonusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bonus_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Img_Bonus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RGB" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RGB_2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProDetails" Relationship="Self.FK_ProDetail_Bonus" FromRole="Bonus" ToRole="ProDetail" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Phone_Cus" Type="Int32" />
+    <Property Name="VoucherID" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Total_Temp" Type="Int32" />
+    <Property Name="Total_Price" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Cart_Customer" FromRole="Cart" ToRole="Customer" />
+    <NavigationProperty Name="CartDetails" Relationship="Self.FK_CartDetail_Cart" FromRole="Cart" ToRole="CartDetail" />
+    <NavigationProperty Name="OrderProes" Relationship="Self.FK_OrderPro_Cart" FromRole="Cart" ToRole="OrderPro" />
+  </EntityType>
+  <EntityType Name="CartDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Pro" Type="Int32" />
+    <Property Name="ID_Cart" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK_CartDetail_Cart" FromRole="CartDetail" ToRole="Cart" />
+    <NavigationProperty Name="ProDetail" Relationship="Self.FK_CartDetail_Products" FromRole="CartDetail" ToRole="ProDetail" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCate" />
+    </Key>
+    <Property Name="IDCate" Type="Int32" Nullable="false" />
+    <Property Name="NameCate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorID" />
+    </Key>
+    <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RGB" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProDetails" Relationship="Self.FK_ProDetail_Color" FromRole="Color" ToRole="ProDetail" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImgCMT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Pro" Type="Int32" />
+    <Property Name="PhoneCus" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCMT" Type="DateTime" Precision="0" />
+    <Property Name="Rating" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Comment_Customer" FromRole="Comment" ToRole="Customer" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
+    <NavigationProperty Name="ListImages" Relationship="Self.FK_ListImage_Comment" FromRole="Comment" ToRole="ListImage" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Phone" />
+    </Key>
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NameUser" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="AddressUser" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Point" Type="Int32" />
+    <NavigationProperty Name="AddressCus" Relationship="Self.FK_AddressCus_Customer" FromRole="Customer" ToRole="AddressCus" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Customer" FromRole="Customer" ToRole="Cart" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Customer" FromRole="Customer" ToRole="Comment" />
+    <NavigationProperty Name="OrderProes" Relationship="Self.FK_OrderPro_Customer" FromRole="Customer" ToRole="OrderPro" />
+  </EntityType>
+  <EntityType Name="ListImage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProID" Type="Int32" />
+    <Property Name="CmtID" Type="Int32" />
+    <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_ListImage_Comment" FromRole="ListImage" ToRole="Comment" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ListImage_Product" FromRole="ListImage" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ListImage_2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProID" Type="Int32" />
+    <Property Name="CmtID" Type="Int32" />
+    <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProDetail" Relationship="Self.FK_ListImage_2_ProDetail" FromRole="ListImage_2" ToRole="ProDetail" />
+  </EntityType>
+  <EntityType Name="MostSearched">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Pro" Type="Int32" />
+    <Property Name="ID_Order" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="Status_Order" Type="Boolean" />
+    <Property Name="Deadline" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderPro" Relationship="Self.FK_OrderDetail_OrderPro" FromRole="OrderDetail" ToRole="OrderPro" />
+    <NavigationProperty Name="ProDetail" Relationship="Self.FK_OrderDetail_ProDetail" FromRole="OrderDetail" ToRole="ProDetail" />
+  </EntityType>
+  <EntityType Name="OrderPro">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Pro" Type="Int32" />
+    <Property Name="PhoneCus" Type="Int32" />
+    <Property Name="Total_Temp" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Total_Price" Type="Int32" />
+    <Property Name="Date_Order" Type="DateTime" Precision="0" />
+    <Property Name="Deadline" Type="DateTime" Precision="0" />
+    <Property Name="Status_Order" Type="Boolean" />
+    <Property Name="ID_Cart" Type="Int32" />
+    <Property Name="AddressCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentID" Type="Int32" />
+    <Property Name="ID_Voucher" Type="Int32" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK_OrderPro_Cart" FromRole="OrderPro" ToRole="Cart" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_OrderPro_Customer" FromRole="OrderPro" ToRole="Customer" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_OrderPro" FromRole="OrderPro" ToRole="OrderDetail" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_OrderPro_Payment" FromRole="OrderPro" ToRole="Payments" />
+    <NavigationProperty Name="Voucher" Relationship="Self.FK_OrderPro_Voucher" FromRole="OrderPro" ToRole="Voucher" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Oder_ID" Type="Int32" />
+    <Property Name="PaymentAmount" Type="Int32" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OrderProes" Relationship="Self.FK_OrderPro_Payment" FromRole="Payments" ToRole="OrderPro" />
+  </EntityType>
+  <EntityType Name="ProDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProID" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="HardDrive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CPU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Old_Price" Type="Int32" Nullable="false" />
+    <Property Name="ColorID" Type="Int32" />
+    <Property Name="BonusID" Type="Int32" />
+    <Property Name="SoldQuantity" Type="Int32" />
+    <Property Name="ViewQuantity" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <NavigationProperty Name="Bonu" Relationship="Self.FK_ProDetail_Bonus" FromRole="ProDetail" ToRole="Bonus" />
+    <NavigationProperty Name="CartDetails" Relationship="Self.FK_CartDetail_Products" FromRole="ProDetail" ToRole="CartDetail" />
+    <NavigationProperty Name="Color" Relationship="Self.FK_ProDetail_Color" FromRole="ProDetail" ToRole="Color" />
+    <NavigationProperty Name="ListImage_2" Relationship="Self.FK_ListImage_2_ProDetail" FromRole="ProDetail" ToRole="ListImage_2" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_ProDetail" FromRole="ProDetail" ToRole="OrderDetail" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ProDetail_Product" FromRole="ProDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Installment" Type="Int32" />
+    <Property Name="Title_Discount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Promotion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PromoAdd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PolicyPro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Screen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Type_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Graphics_Card" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Connector" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Design" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Special" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CameraSau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CameraTruoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Chip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateRelease" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="TradeMarkID" Type="Int32" />
+    <Property Name="PromotionID" Type="Int32" />
+    <Property Name="PolicyProID" Type="Int32" />
+    <Property Name="ServiceID" Type="Int32" />
+    <Property Name="Rating" Type="Decimal" Precision="10" Scale="1" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
+    <NavigationProperty Name="ListImages" Relationship="Self.FK_ListImage_Product" FromRole="Product" ToRole="ListImage" />
+    <NavigationProperty Name="ProDetails" Relationship="Self.FK_ProDetail_Product" FromRole="Product" ToRole="ProDetail" />
+    <NavigationProperty Name="TradeMark" Relationship="Self.FK_Product_TradeMark" FromRole="Product" ToRole="TradeMark" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TradeMark">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameTM" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Descript" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_TradeMark" FromRole="TradeMark" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Voucher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameVoucher" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="Descript" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MinPro" Type="Int32" />
+    <Property Name="MinTotal" Type="Int32" />
+    <NavigationProperty Name="OrderProes" Relationship="Self.FK_OrderPro_Voucher" FromRole="Voucher" ToRole="OrderPro" />
+  </EntityType>
+  <Association Name="FK_AddressCus_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="AddressCus" Type="Self.AddressCu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Phone" />
+      </Principal>
+      <Dependent Role="AddressCus">
+        <PropertyRef Name="PhoneCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProDetail_Bonus">
+    <End Role="Bonus" Type="Self.Bonu" Multiplicity="0..1" />
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bonus">
+        <PropertyRef Name="BonusID" />
+      </Principal>
+      <Dependent Role="ProDetail">
+        <PropertyRef Name="BonusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Phone" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="Phone_Cus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CartDetail_Cart">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="0..1" />
+    <End Role="CartDetail" Type="Self.CartDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CartDetail">
+        <PropertyRef Name="ID_Cart" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPro_Cart">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="0..1" />
+    <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderPro">
+        <PropertyRef Name="ID_Cart" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CartDetail_Products">
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="0..1" />
+    <End Role="CartDetail" Type="Self.CartDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CartDetail">
+        <PropertyRef Name="ID_Pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCate" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProDetail_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorID" />
+      </Principal>
+      <Dependent Role="ProDetail">
+        <PropertyRef Name="ColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Phone" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="PhoneCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="ID_Pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListImage_Comment">
+    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+    <End Role="ListImage" Type="Self.ListImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ListImage">
+        <PropertyRef Name="CmtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPro_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Phone" />
+      </Principal>
+      <Dependent Role="OrderPro">
+        <PropertyRef Name="PhoneCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListImage_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ListImage" Type="Self.ListImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ListImage">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListImage_2_ProDetail">
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="0..1" />
+    <End Role="ListImage_2" Type="Self.ListImage_2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ListImage_2">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_OrderPro">
+    <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderPro">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ID_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_ProDetail">
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ID_Pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPro_Payment">
+    <End Role="Payments" Type="Self.Payment" Multiplicity="0..1" />
+    <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments">
+        <PropertyRef Name="PaymentID" />
+      </Principal>
+      <Dependent Role="OrderPro">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderPro_Voucher">
+    <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
+    <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Voucher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderPro">
+        <PropertyRef Name="ID_Voucher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_TradeMark">
+    <End Role="TradeMark" Type="Self.TradeMark" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TradeMark">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="TradeMarkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TGDD_Ver6Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AddressCus" EntityType="Self.AddressCu" />
+    <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+    <EntitySet Name="Banners" EntityType="Self.Banner" />
+    <EntitySet Name="Bonus" EntityType="Self.Bonu" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="CartDetails" EntityType="Self.CartDetail" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="ListImages" EntityType="Self.ListImage" />
+    <EntitySet Name="ListImage_2" EntityType="Self.ListImage_2" />
+    <EntitySet Name="MostSearcheds" EntityType="Self.MostSearched" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="OrderProes" EntityType="Self.OrderPro" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="ProDetails" EntityType="Self.ProDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TradeMarks" EntityType="Self.TradeMark" />
+    <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
+    <AssociationSet Name="FK_AddressCus_Customer" Association="Self.FK_AddressCus_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="AddressCus" EntitySet="AddressCus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProDetail_Bonus" Association="Self.FK_ProDetail_Bonus">
+      <End Role="Bonus" EntitySet="Bonus" />
+      <End Role="ProDetail" EntitySet="ProDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Customer" Association="Self.FK_Cart_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CartDetail_Cart" Association="Self.FK_CartDetail_Cart">
+      <End Role="Cart" EntitySet="Carts" />
+      <End Role="CartDetail" EntitySet="CartDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPro_Cart" Association="Self.FK_OrderPro_Cart">
+      <End Role="Cart" EntitySet="Carts" />
+      <End Role="OrderPro" EntitySet="OrderProes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CartDetail_Products" Association="Self.FK_CartDetail_Products">
+      <End Role="ProDetail" EntitySet="ProDetails" />
+      <End Role="CartDetail" EntitySet="CartDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProDetail_Color" Association="Self.FK_ProDetail_Color">
+      <End Role="Color" EntitySet="Colors" />
+      <End Role="ProDetail" EntitySet="ProDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Customer" Association="Self.FK_Comment_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListImage_Comment" Association="Self.FK_ListImage_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="ListImage" EntitySet="ListImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPro_Customer" Association="Self.FK_OrderPro_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="OrderPro" EntitySet="OrderProes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListImage_Product" Association="Self.FK_ListImage_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ListImage" EntitySet="ListImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListImage_2_ProDetail" Association="Self.FK_ListImage_2_ProDetail">
+      <End Role="ProDetail" EntitySet="ProDetails" />
+      <End Role="ListImage_2" EntitySet="ListImage_2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_OrderPro" Association="Self.FK_OrderDetail_OrderPro">
+      <End Role="OrderPro" EntitySet="OrderProes" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_ProDetail" Association="Self.FK_OrderDetail_ProDetail">
+      <End Role="ProDetail" EntitySet="ProDetails" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPro_Payment" Association="Self.FK_OrderPro_Payment">
+      <End Role="Payments" EntitySet="Payments" />
+      <End Role="OrderPro" EntitySet="OrderProes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderPro_Voucher" Association="Self.FK_OrderPro_Voucher">
+      <End Role="Voucher" EntitySet="Vouchers" />
+      <End Role="OrderPro" EntitySet="OrderProes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProDetail_Product" Association="Self.FK_ProDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProDetail" EntitySet="ProDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_TradeMark" Association="Self.FK_Product_TradeMark">
+      <End Role="TradeMark" EntitySet="TradeMarks" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

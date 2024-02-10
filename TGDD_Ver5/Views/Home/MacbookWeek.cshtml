@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+@{
+    Layout = null;
+}
+<link href="~/Content/Home/MacbookWeek.css" rel="stylesheet" />
+<div class="week__macbook container-fluid">
+    <p class="week__macbook--title"><b>TUẦN LỄ MACBOOK</b></p>
+    <div class="week__macbook--promo">
+        <div class="detail__promo">
+            <a href=""> <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/11/banner/Desk-6-380x200.png"></a>
+            <a href=""><img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/11/banner/Desk-7-380x200.png"></a>
+            <a href=""><img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/11/banner/Desk-8-380x200.png"></a>
+        </div>
+    </div>
+        <div class="week__macbook--product">
+            @foreach (var item in Model)
+            {
+               <a href="@Url.Action("Laptop_Detail", "ProductDetail", new {id = item.ID})">
+                   <div class="detail__product--macbook" style="height: 350px;">
+                       <div class="product__macbook--img"><img src="@Url.Content(item.Product.ImagePro)"></div>
+                       <h6 class="name__product--macbook">@item.Product.NamePro</h6>
+                       <p class="text__online--macbook"><i><img src="https://i.imgur.com/iNi3Qw6.png"></i>Online giá rẻ quá</p>
+                       <div class="box__price--macbook">
+                           <strong>@String.Format("{0:#,0}", @item.Price)₫</strong>
+                       </div>
+                       @if (item.Product.Rating != null)
+                       {
+                           <p class="vote__macbook">
+                               <b style="color: #fb6e2e">@item.Product.Rating</b>
+                               <i><img style="margin: 0px 10px 4px 5px; width: 13px; height: 13px;" src="https://cdn-icons-png.flaticon.com/128/8906/8906905.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+                               (@item.Product.Comments.Count())
+                           </p>
+                       }
+                       </div>
+               </a>
+            }
+
+
+        </div>
+
+    <a style="text-decoration:none" class="btn__all--macbook" href="@Url.Action("TradeMark","Laptop", new {tm ="Macbook"})">Xem tất cả sản phẩm</a>
+</div>

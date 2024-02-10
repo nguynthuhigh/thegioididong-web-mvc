@@ -1,0 +1,180 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+@{ 
+    Layout = null;
+}
+<style>
+    /*Recommend Product*/
+    .product__recommend {
+        margin-top: 10px;
+        width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+        .product__recommend a {
+            text-decoration: none;
+            color: black;
+            margin-top: 3px;
+        }
+
+    .product__recommend--item {
+        width: 228px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        height: 100%;
+    }
+
+        .product__recommend--item .item-label {
+            font-size: 10px;
+            background-color: whitesmoke;
+            width: fit-content;
+            margin: 5px;
+            border-radius: 5px;
+            padding: 2px;
+        }
+
+        .product__recommend--item .item-img {
+            position: relative;
+        }
+
+            .product__recommend--item .item-img img {
+                width: 100%;
+                padding: 20px;
+                transition: transform 0.2s;
+            }
+
+                .product__recommend--item .item-img img:hover {
+                    transform: translateY(-5px);
+                }
+
+        .product__recommend--item .item-installment {
+            color: white;
+            font-size: 10px;
+
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            width: fit-content;
+            padding-right: 5px;
+            margin-left: 5px;
+        }
+
+            .product__recommend--item .item-installment img {
+                height: 20px;
+            }
+
+    .item-text p {
+        font-size: 15px;
+        display: -webkit-box;
+        overflow: hidden;
+    }
+
+    .item-text .price {
+        font-size:17px;
+        display: flex;
+        color: #D0021C;
+    }
+
+        .item-text .price small {
+            margin-left: 10px;
+            background-color: #FFF0E9;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #EB5757;
+        }
+
+    .vote-txt {
+        margin-top: 5px;
+        color: #FE6C30;
+        font-size: 13px;
+    }
+
+        .vote-txt img {
+            height: 10px;
+        }
+
+    .product__recommend--temp {
+        position: absolute;
+        top: 80px;
+        left: -15px;
+    }
+
+        .product__recommend--temp img {
+            width: 90px !important;
+        }
+    .recommend__today--title h4{
+        font-size:25px;
+    }
+    .product__recommend--item:hover #name__pro {
+        color: #0A58CD;
+    }
+    .product__recommend--item:hover .item-img img {
+        transform: translate(0, -5px);
+    }
+    .item-img img {
+        transition: transform 0.3s ease-in-out;
+    }
+    /*end*/
+  
+</style>
+<div class="container-fluid recommend__today">
+    <div class="recommend__today--title"><h4>GỢI Ý HÔM NAY</h4></div>
+
+    <div class=" product__recommend">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("Laptop_Detail","ProductDetail",new {id = item.ID})">
+                <div class="product__recommend--item">
+                    <div class="item-label">Trả góp 0%</div>
+                    <div class="item-img">
+                        <img src="@Url.Content(item.Product.ImagePro)">
+                      
+                        <div class="product__recommend--temp">
+                            @if (item.Product.Chip == "DB")
+                            {
+                                <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/05/campaign/Label-1-200x200.png">
+                            }
+                            else if (item.Product.Chip == "RTX")
+                            {
+                                <img src="https://cdn.tgdd.vn/ValueIcons/label-rtx-30-final.png">
+                            }
+                            else if (item.Product.Chip == "BaoHanh1")
+                            {
+                                <img src="https://cdn.tgdd.vn/ValueIcons/label-1nam-3s1.png">
+                            }
+                            else if (item.Product.Chip == "BaoHanh2")
+                            {
+                                <img src="https://cdn.tgdd.vn/ValueIcons/Label_01-01.png">
+                            }
+                            else if (item.Product.Chip == "i5")
+                            {
+                                <img src="https://cdn.tgdd.vn/ValueIcons/11th-gen-core-i5-processors-badge-rwd.png.rendition.intel.web.550.550.jpg">
+                            }
+                            else if (item.Product.Chip == "i7")
+                            {
+                                <img src="https://cdn.tgdd.vn/ValueIcons/i7-gen-12-13.png">
+                            }
+                        </div>
+                    </div>
+                    <div class="item-text">
+                        <p class="item-installment" style="background-color:@Url.Content(item.Bonu.RGB)"> <img src="@Url.Content(item.Bonu.Img_Bonus)"><span>@Url.Content(item.Bonu.Bonus_Name)</span></p>
+                        <p id="name__pro" style="height:40px;">@item.Product.NamePro @item.CPU @item.RAM @item.HardDrive</p>
+                        <strong class="price">@String.Format("{0:#,0}", item.Price)₫<small>-@item.Discount%</small></strong>
+                        @if(item.Product.Rating != null)
+                        {
+                            <p class="vote-txt">
+                                <b>@item.Product.Rating</b>
+                                <img src="https://i.imgur.com/p1E7N1L.png"> <span style="color:gray;"> (@item.Product.Comments.Count())</span>
+                            </p>
+                        }
+                        
+                    </div>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>

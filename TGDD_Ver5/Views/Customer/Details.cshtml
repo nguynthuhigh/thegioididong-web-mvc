@@ -1,0 +1,94 @@
+﻿@model TGDD_Ver5.Models.Customer
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thông tin khách hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>Tên khách hàng</th>
+        <td>@(Model?.NameUser)</td>
+    </tr>
+    <tr>
+        <th>Số điện thoại</th>
+        <td>@(Model?.Phone)</td>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@(Model?.AddressUser)</td>
+    </tr>
+    <tr>
+        <th>Điểm</th>
+        <td>@(Model?.Point)</td>
+    </tr>
+</table>
+<h2>Danh sách đơn hàng</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>
+            Ngày đặt hàng
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>Phương thức thanh toán</th>
+        <th>
+            Tổng tiền
+        </th>
+
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model.OrderProes)
+        {
+            <tr>
+                <td>#@item.ID</td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Order)
+                </td>
+                <td>
+                    @if (item.Status_Order == null)
+                    {
+                        <span style="color: #FFD400">Chờ thanh toán</span>
+                    }
+                    else if (item.Status_Order == true)
+                    {
+                        <span style="color: #1CAC53">Đã thanh toán</span>
+                    }
+                    else
+                    {
+                        <span style="color: #D0021B">Đã hủy</span>
+                    }
+                </td>
+                <td>
+                    @if (item != null && item.Payment != null)
+                    {
+                        @item.Payment.PaymentMethod
+                    }
+                </td>
+                <td>
+                    @String.Format("{0:#,0}", item.Total_Price)<sup>đ</sup>
+                </td>
+                <td> @Html.ActionLink("Details", "Details", "Order", new { id = item.ID }, new { @class = "btn btn-sm btn-success" })</td>
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr>
+            <td colspan="5">Chưa có đơn hàng nào</td>
+        </tr>
+    }
+
+    </table>
+<p>
+   
+    @Html.ActionLink("Back to List", "Manager")
+</p>

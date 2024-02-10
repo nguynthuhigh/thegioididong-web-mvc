@@ -1,0 +1,192 @@
+﻿.box__manufacturer--msi {
+    width: 1200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.list__laptopmsi {
+    width: 1200px;
+    list-style: none;
+    display: grid;
+    grid-auto-rows: minmax(min-content,max-content);
+    grid-template-columns: repeat(5,minmax(0,1fr));
+    border-left: 1px solid #f1f1f1;
+    border-top: 1px solid #f1f1f1;
+    padding: 0px;
+    margin: 0px;
+}
+
+.detail__laptopmsi {
+    border-right: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.infolaptop__msi {
+    height:450px;
+    background-color:white;
+    padding: 10px 15px 40px;
+}
+
+.infolaptop__msi--installment {
+    margin: 0px 0px 10px;
+}
+
+.set__ins--laptopmsi {
+    background-color: #f1f1f1;
+    font-size: 11px;
+    font-family: Arial;
+    padding: 3px;
+    margin: 0px 4px 0px 0px;
+}
+
+.infolaptop__msi--img {
+}
+
+.set__img--laptopmsi {
+    transition: transform 0.3s ease-in-out;
+    width: 208.8px;
+    height: 139.19px;
+    margin: 10px 0px 30px;
+}
+
+.infolaptop__msi--text {
+}
+
+.installment__laptopmsi {
+    background-color: #e91f63;
+    display: flex;
+    width: fit-content;
+    border-radius: 15px;
+    margin: 0px;
+}
+
+.set__img--hotdeal {
+    width: 18px;
+    height: 18px;
+}
+
+.set__hotdeal--laptopmsi {
+    font-size: 10px;
+    font-family: arial;
+    margin-top: 2px;
+    margin-left: 4px;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.set__img--sale {
+    width: 18px;
+    height: 18px;
+}
+
+.set__text--sale {
+    font-size: 10px;
+    font-family: arial;
+    margin: 0px 0px 0px 3px;
+    padding: 4px 0px 0px 3px;
+    color: #ffffff;
+}
+
+.set__text--laptopmsi {
+    overflow:hidden;
+    height:18px;
+    font: 14px arial;
+    margin: 10px 0px 0px;
+}
+
+.item__compare--laptopmsi {
+    margin: 5px 0px 0px;
+    display: flex;
+}
+
+.set__compare--laptopmsi {
+    overflow:hidden;
+    height:20px;
+    width:80px;
+    font: 12px arial;
+    margin: 5px 5px 10px 0px;
+    padding: 4px 5px;
+    background-color: #eaeaea;
+}
+
+.laptopmsi__price--old {
+    padding: 0px;
+    font: 13px arial;
+    display: flex;
+}
+
+.set__priceold--laptopmsi {
+    color: #333333;
+    padding-right: 4px;
+    text-decoration: line-through;
+}
+
+.set__percent--laptopmsi {
+    color: #444444;
+}
+
+.laptopmsi__price--new {
+    color: #e83a45;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-bottom: 5px;
+}
+
+.item__rating--laptopmsi {
+    margin-bottom: 5px;
+    padding: 0px;
+    display: flex;
+    height: 20px;
+}
+
+.set__iconrating--laptopmsi {
+    width: 16px;
+    height: 15px;
+    margin-right: 3px;
+    margin-bottom: 30px;
+}
+
+.set__textrating--laptopmsi {
+    font-size: 11px;
+    color: #333333;
+    margin-left: 5px;
+}
+
+.set__configuration--laptopmsi {
+    font: 12px arial;
+    color: #222222;
+    line-height: 1.8;
+}
+
+.item__ss--laptopmsi {
+    font: 12px arial;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.set__iconss--laptopmsi {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.infolaptop__msi:hover {
+    box-shadow: -1px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+    .infolaptop__msi:hover .set__text--laptopmsi {
+        color: #288AD6;
+    }
+
+    .infolaptop__msi:hover .set__img--laptopmsi {
+        transform: translate(0, -5px);
+    }
+
+.detail__laptopmsi a {
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+@{ var order = Model.FirstOrDefault();}
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <td>Mã đơn hàng</td>
+            <td>@order.OrderPro.ID</td>
+        </tr>
+        <tr>
+            <td>Tên khách hàng: </td>
+            <td>@order.OrderPro.Customer.NameUser</td>
+        </tr>
+        <tr>
+            <td>Ngày mua </td>
+            <td>@order.OrderPro.Date_Order </td>
+        </tr>
+        <tr>
+            <td>Tổng tiền: </td>
+            <td>@String.Format("{0:#,0}", order.OrderPro.Total_Price) (Giảm @(order.OrderPro?.Voucher?.Discount)% với mã @(order?.OrderPro?.Voucher?.NameVoucher))</td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Thương hiệu</th>
+            <th>Màu</th>
+            <th>Số lượng</th>
+            <th>Giá sản phẩm</th>
+            <th>Tổng tiền   </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProDetail.Product.NamePro</td>
+                <td>@item.ProDetail.Product.TradeMark.NameTM</td>
+                <td>@item.ProDetail.Color.ColorName</td>
+                <td>@item.Quantity</td>
+                <td>@String.Format("{0:#,0}", item.ProDetail.Price)</td>
+                <td>@String.Format("{0:#,0}", item.Price)</td>
+            </tr>
+        }
+    </table>
+</div>
+<p>|
+    @Html.ActionLink("Back to List", "Index")
+</p>

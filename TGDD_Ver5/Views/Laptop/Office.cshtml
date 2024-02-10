@@ -1,0 +1,120 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.ProDetail>
+
+@{
+    Layout = null;
+}
+<style>
+    .infolaptop__msi--temp {
+        margin-left: 160px;
+        position: absolute;
+        z-index: 2;
+    }
+
+        .infolaptop__msi--temp img {
+            width: 50px;
+        }
+
+    .detail__productlist:hover .infolaptop__msi--img img {
+        transform: translate(0, -5px);
+    }
+
+    .infolaptop__msi--img img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .infolaptop__msi--text {
+        height: 340px;
+    }
+</style>
+<div class="boxcontent__HTVP">
+    <div class="content__HTVP container-fluid">
+        <div class="banner__HTVP">
+            <img src="https://cdn.tgdd.vn/2022/08/banner/banner-hoc-tap-desk-1-1200x200.png">
+        </div>
+        <div class="box__mainlist">
+            @foreach (var item in Model)
+            {<a href="@Url.Action("Laptop_Detail","ProductDetail",new {id = item.ID})" style="text-decoration:none;color:black;">
+                    <div class="detail__productlist">
+                        <div class="infolaptop__msi">
+                            <div class="infolaptop__msi--installment">
+                                <span class="set__ins--laptopmsi">Trả góp 0%</span>
+                            </div>
+                            <div class="infolaptop__msi--img">
+                                <div class="infolaptop__msi--temp">
+                                    @if (item.Product.Chip == "DB")
+                                    {
+                                        <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/05/campaign/Label-1-200x200.png">
+                                    }
+                                    else if (item.Product.Chip == "RTX")
+                                    {
+                                        <img src="https://cdn.tgdd.vn/ValueIcons/label-rtx-30-final.png">
+                                    }
+                                    else if (item.Product.Chip == "BaoHanh1")
+                                    {
+                                        <img src="https://cdn.tgdd.vn/ValueIcons/label-1nam-3s1.png">
+                                    }
+                                    else if (item.Product.Chip == "BaoHanh2")
+                                    {
+                                        <img src="https://cdn.tgdd.vn/ValueIcons/Label_01-01.png">
+                                    }
+                                    else if (item.Product.Chip == "i5")
+                                    {
+                                        <img src="https://cdn.tgdd.vn/ValueIcons/11th-gen-core-i5-processors-badge-rwd.png.rendition.intel.web.550.550.jpg">
+                                    }
+                                    else if (item.Product.Chip == "i7")
+                                    {
+                                        <img src="https://cdn.tgdd.vn/ValueIcons/i7-gen-12-13.png">
+                                    }
+                                </div>
+
+                                <img class="set__img--laptopmsi" src="@Url.Content(item.Product.ImagePro)">
+
+                            </div>
+                            <div class="infolaptop__msi--text">
+                                <p class="installment__laptopmsi" style="background-color:@Url.Content(item.Bonu.RGB)"><img class="set__img--hotdeal" src="@Url.Content(item.Bonu.Img_Bonus)"><span class="set__hotdeal--laptopmsi">@item.Bonu.Bonus_Name</span></p>
+                                <h3 class="set__text--laptopmsi">
+                                    Laptop @item.Product.NamePro
+                                </h3>
+                                <div class="item__compare--laptopmsi">
+                                    <span class="set__compare--laptopmsi">RAM @item.RAM</span>
+                                    <span class="set__compare--laptopmsi">SSD @item.HardDrive</span>
+                                </div>
+                                <div class="laptopmsi__price--old">
+                                    <p class="set__priceold--laptopmsi">@String.Format("{0:#,0}", item.Old_Price)₫</p>
+                                    <span class="set__percent--laptopmsi">-@item.Discount%</span>
+                                </div>
+                                <strong class="laptopmsi__price--new">@String.Format("{0:#,0}", item.Price)<sup>₫</sup></strong>
+                                <p style="color: #666; font: 13px arial; margin: 3px 0px 8px;">Quà @item.Bonu.Bonus_Name</p>
+                                @if (item.Product.Rating != null)
+                                {
+                                    <div class="item__rating--laptopmsi">
+                                        @for (decimal i = 0; i < item.Product.Rating; i++)
+                                        {
+                                            <i><img class="set__iconrating--laptopmsi" src="https://cdn-icons-png.flaticon.com/128/6543/6543586.png?ga=GA1.1.1214305306.1697263106&track=ais"></i>
+
+                                        }
+
+                                        <p class="set__textrating--laptopmsi">@item.Product.Rating</p>
+                                    </div>
+                                }
+
+                                <ul style="margin-left: 17px; padding: 0px;">
+                                    <li class="set__configuration--laptopmsi">Màn hình: @item.Product.Screen</li>
+                                    <li class="set__configuration--laptopmsi">CPU: @item.CPU</li>
+                                    <li class="set__configuration--laptopmsi">Card: @item.Product.Graphics_Card</li>
+                                    <li class="set__configuration--laptopmsi">Pin: @item.Product.Pin</li>
+                                    <li class="set__configuration--laptopmsi">Khối lượng: @item.Product.Mass</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="btn__seeall--HTVP" style="font-size:15px;">
+    <a href="@Url.Action("Cate","Laptop", new {cate ="van-phong-hoc-tap"})">XEM TẤT CẢ LAPTOP HỌC TẬP, VĂN PHÒNG</a>
+</div>
+

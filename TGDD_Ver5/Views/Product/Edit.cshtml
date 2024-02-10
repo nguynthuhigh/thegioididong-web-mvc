@@ -1,0 +1,119 @@
+﻿@model TGDD_Ver5.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <td><input type="text" class="input-group" name="NamePro" value="@Model.NamePro" /></td>
+    </tr>
+    <tr>
+        <th>Ảnh</th>
+        <td>
+            <img src="@Url.Content(Model.ImagePro)" style="width:150px;" id="previewImg" />
+            <input type="file" name="imageFile" onchange="ChangeImage(this,document.getElementById('previewImg'))" />
+            <input type="hidden" name="existingImage" value="@Model.ImagePro" />
+        </td>
+    </tr>
+    <tr>
+        <th>Hình ảnh chi tiết</th>
+        <td> @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" }) </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @foreach (var item in Model.ListImages)
+            {
+                <img src="@Url.Content(item.ImagePro)" style="width:150px;" />
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Nhãn hiệu</th>
+        <td>
+            @Html.DropDownList("TradeMarkID", null, htmlAttributes: new { @class = "form-control" })
+        </td>
+    <tr>
+        <th>Loại</th>
+        <td>
+            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td>Khuyến mãi</td>
+        <td><textarea id="info" name="Promotion">@Model.Promotion</textarea></td>
+    </tr>
+    <tr>
+        <td>Ưu đãi thêm</td>
+        <td><textarea id="info" name="PromoAdd">@Model.PromoAdd</textarea></td>
+    </tr>
+    <tr>
+        <td>Bộ sản phẩm kèm theo</td>
+        <td><textarea id="info" name="PolicyPro">@Model.PolicyPro</textarea></td>
+    </tr>
+    <tr>
+        <th>Ngày phát hành</th>
+        <td><input type="text" class="input-group" name="DateRelease" value="@Model.DateRelease" /></td>
+    </tr>
+    <tr>
+        <th>Màn hình</th>
+        <td><input type="text" class="input-group" name="Screen" value="@Model.Screen" /></td>
+    </tr>
+    <tr>
+        <th>Card đồ họa</th>
+        <td><input type="text" class="input-group" name="Graphics_Card" value="@Model.Graphics_Card" /></td>
+    </tr>
+    <tr>
+        <th>Kết nối</th>
+        <td><input type="text" class="input-group" name="Connector" value="@Model.Connector" /></td>
+    </tr>
+    <tr>
+        <th>Hệ điều hành</th>
+        <td><input type="text" class="input-group" name="OS" value="@Model.OS" /></td>
+    </tr>
+    <tr>
+        <th>Thiết kế</th>
+        <td><input type="text" class="input-group" name="Design" value="@Model.Design" /></td>
+    </tr>
+    <tr>
+        <th>Kích thước</th>
+        <td><input type="text" class="input-group" name="Size" value="@Model.Size" /></td>
+    </tr>
+    <tr>
+        <th>Khối lượng</th>
+        <td><input type="text" class="input-group" name="Mass" value="@Model.Mass" /></td>
+    </tr>
+    <tr>
+        <th>Pin</th>
+        <td><input type="text" class="input-group" name="Pin" value="@Model.Pin" /></td>
+    </tr>
+    <tr>
+        <th>Đặc biệt</th>
+        <td><input type="text" class="input-group" name="Chip" value="@Model.Chip" /></td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <textarea id="info" name="Info">@Model.Info</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">
+            <input class="btn btn-success" type="submit" value="Save" />
+        </td>
+    </tr>
+
+</table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

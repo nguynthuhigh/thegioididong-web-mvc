@@ -1,0 +1,96 @@
+﻿@model TGDD_Ver5.Models.ProDetail
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chỉnh sửa sản phẩm</h2>
+
+
+@using (Html.BeginForm("Edit", "ProductDetail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["ErrorInput"] != null)
+    {
+        <div class="alert alert-danger" style="width:fit-content">@TempData["ErrorInput"]</div>
+    }
+    <table class="table">
+        <tr>
+            <td colspan="2"><input type="hidden" value="@Model.SoldQuantity" name="SoldQuantity"/></td>
+        </tr>
+        <tr>
+            <td>Chọn sản phẩm</td>
+            <td>@Html.DropDownList("ProID", null, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Chọn màu</td>
+            <td>@Html.DropDownList("ColorID", null, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Chọn ưu đãi</td>
+            <td> @Html.DropDownList("BonusID", null, htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>CPU</td>
+            <td>@Html.EditorFor(model => model.CPU, new { @class = "input-group" })</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>@Html.EditorFor(model => model.RAM, new { @class = "input-group" })</td>
+        </tr>
+        <tr>
+            <td>Ổ cứng</td>
+            <td>@Html.EditorFor(model => model.HardDrive, new { @class = "input-group" })</td>
+        </tr>
+
+        <tr>
+            <td>Giá</td>
+            <td>
+                @Html.EditorFor(model => model.Old_Price, new { @class = "input-group" })
+            @Html.ValidationMessageFor(model => model.Old_Price, "", new { @class = "text-danger" })
+        </td>
+
+
+    </tr>
+    <tr>
+        <td>Giảm giá (Nhập giá trị dương)</td>
+        <td>
+            @Html.EditorFor(model => model.Discount, new { @class = "input-group" })
+                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+            </td>
+    </tr>
+    <tr>
+        <td>Số lượng</td>
+        <td>@Html.EditorFor(model => model.ViewQuantity, new { @class = "input-group" })</td>
+        @Html.ValidationMessageFor(model => model.ViewQuantity, "", new { @class = "text-danger" })
+    </tr>
+    <tr>
+        <td>Hình ảnh chi tiết</td>
+        <td> @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" }) </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @foreach (var item in Model.ListImage_2)
+            {
+                <img width="200" src="@Url.Content(item.ImagePro)" />
+            }
+        </td>
+
+
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center"><input type="submit" value="Edit" class="btn btn-success" /></td>
+    </tr>
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

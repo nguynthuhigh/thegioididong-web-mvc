@@ -1,0 +1,67 @@
+﻿@model TGDD_Ver5.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgCMT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgCMT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCMT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCMT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.NamePro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

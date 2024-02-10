@@ -1,0 +1,20 @@
+﻿@model TGDD_Ver5.Models.Banner
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Bạn có muốn xóa banner này?</h2>
+
+<div>
+    <img src="@Url.Content(Model.ImgBanner)" width="200" />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,44 @@
+﻿
+@model TGDD_Ver5.Models.AdminUser
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutNull.cshtml";
+}
+    
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+        .form__login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:170px;
+        }
+
+    </style>
+    @using (Html.BeginForm("Index", "AdminUser", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form__login">
+            
+            <div class="box__login">
+                <form class="form__login">
+                    <div class="input__in4">
+                        <div>
+                            <img class="iconlogin__phone" src="https://cdn-icons-png.flaticon.com/128/9656/9656411.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                            <input class="txt__account" type="text" name="NameUser" placeholder="Username">
+                        </div>
+                        <div>
+                            <img class="iconlogin__password" src="https://cdn-icons-png.flaticon.com/128/5174/5174767.png?ga=GA1.1.1214305306.1697263106&track=ais">
+                            <input class="txt__password" type="password" name="PasswordUser" placeholder="Password">
+                        </div>
+
+                    </div>
+                    <button class="btn__next">Đăng nhập</button>
+                </form>
+            </div>
+        </div>
+    }
+

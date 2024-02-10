@@ -1,0 +1,107 @@
+﻿.week__macbook {
+    width: 1200px;
+    background-color: #4e4a4a;
+    border-radius: 15px;
+    padding: 15px;
+    font: 14px arial;
+}
+
+.week__macbook--title {
+    font: 45px arial;
+    padding: 5px 0px 20px;
+    color: white;
+    text-align: center;
+    margin: 0px;
+}
+
+.week__macbook--promo {
+    padding-bottom: 15px;
+}
+
+.detail__promo {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .detail__promo img {
+        width: 383.33px;
+    }
+
+.week__macbook--product {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail__product--macbook {
+    width: 226px;
+    height: 403px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+    .detail__product--macbook img {
+        margin: 30px 0px 30px 0px;
+        width: 206px;
+        height: 137.33px;
+    }
+
+.name__product--macbook {
+    margin: 0px 0px 8px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.text__online--macbook {
+    display: flex;
+    color: #666;
+    font-size: 14px;
+    gap: 5px;
+    align-items: center;
+    margin: 10px 0px 10px;
+    height: 16px;
+}
+
+    .text__online--macbook img {
+        width: 15px;
+        height: 15px;
+    }
+
+.box__price--macbook {
+    color: #d0021c;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.vote__macbook {
+    color: #999;
+}
+
+.btn__all--macbook {
+    display: block;
+    background: #fff;
+    border-radius: 4px;
+    text-align: center;
+    padding: 15px 20px;
+    color: #333;
+    margin: 15px auto 0px;
+    width: 370px;
+    text-decoration: none;
+}
+
+.week__macbook--product a {
+    text-decoration: none;
+    color: black;
+}
+
+.detail__product--macbook:hover .product__macbook--img {
+    transform: translate(0, -5px);
+}
+
+.detail__product--macbook:hover .name__product--macbook {
+    color: #0A58CD;
+}
+
+.product__macbook--img {
+    transition: transform 0.3s ease-in-out;
+}

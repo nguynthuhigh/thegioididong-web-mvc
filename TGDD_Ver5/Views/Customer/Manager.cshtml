@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TGDD_Ver5.Models.Customer>
+
+@{
+    ViewBag.Title = "Manager";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách khách hàng</h2>
+<table class="table">
+    <tr>
+        <th>Tên khách hàng</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Điểm</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NameUser</td>
+            <td>@item.Phone</td>
+            <td>@item.AddressUser</td>
+            <td>@item.Point</td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { phone = item.Phone }, new { @class = "btn btn-sm btn-success" })
+            </td>
+        </tr>
+    }
+
+</table>
+
